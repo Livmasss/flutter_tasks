@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_task3/presentation/screens/profile/EditProfileScreen.dart';
+
+import '../../../data/StaticData.dart';
+import '../../models/ProfileModel.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,32 +13,48 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var profile = profileModel;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Сейранян Самвел Гагикович",
-            style: TextStyle(
+            profile.name,
+            style: const TextStyle(
                 fontSize: 20
             ),
           ),
           Text(
-            "ЭФБО-01-22",
-            style: TextStyle(
+            profile.group,
+            style: const TextStyle(
                 fontSize: 20
             ),
           ),
           Text(
-            "ПКС 5 задание",
-            style: TextStyle(
+            "ПКС ${profile.taskNumber} задание",
+            style: const TextStyle(
                 fontSize: 20
             ),
           ),
-        ],
+          OutlinedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => EditProfileScreen(
+                oldProfile: profile,
+                onProfileCreated: (ProfileModel value) {
+                  setState(() {
+                    profile = value;
+                  });
+                },
+              ),
+            ));
+            },
+              child: const Text("Редактировать")
+          ),
+        ]
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/presentation/models/ProfileModel.dart';
 
 var initialProducts = [
   ProductModel(
@@ -83,3 +84,4 @@ var initialProducts = [
   ),
 ];
 
+var profileModel = ProfileModel("Сейранян С.Г.", "Эфбо-01-22", 6, "+70000000000", "MyCoolEmail@pochta.com");
