@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/StaticData.dart';
-import 'package:flutter_task3/presentation/screens/CreateProductScreen.dart';
-import 'package:flutter_task3/presentation/screens/ProductDetailsScreen.dart';
+import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
+import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
 
 class MainScreen extends StatefulWidget {

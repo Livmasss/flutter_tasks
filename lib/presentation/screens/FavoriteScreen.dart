@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/StaticData.dart';
+import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
 import '../widgets/ProductWidget.dart';
-import 'ProductDetailsScreen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
