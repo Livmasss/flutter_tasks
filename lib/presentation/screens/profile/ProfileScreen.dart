@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_task3/presentation/screens/profile/EditProfileScreen.dart';
 
-import '../../../data/StaticData.dart';
+import '../../../data/ProfileData.dart';
 import '../../models/ProfileModel.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -36,6 +35,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           Text(
             "ПКС ${profile.taskNumber} задание",
+            style: const TextStyle(
+                fontSize: 20
+            ),
+          ),
+          Text(
+            profile.phoneNumber,
+            style: const TextStyle(
+                fontSize: 20
+            ),
+          ),
+          Text(
+            profile.email,
             style: const TextStyle(
                 fontSize: 20
             ),

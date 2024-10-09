@@ -27,22 +27,14 @@ class _ProductWidgetState extends State<ProductWidget> {
     required this.onTap,
   });
 
-  IconData getFavoriteIconData() {
-    if (product.isFavorite) {
-      return Icons.favorite_outlined;
-    } else {
-      return Icons.favorite_outline;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      margin: const EdgeInsets.all(8),
       child: GestureDetector(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -61,7 +53,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                         product.isFavorite = !product.isFavorite;
                       });
                     },
-                      icon: Icon(getFavoriteIconData())
+                      icon: Icon(product.getFavoriteIconData())
                   ),
                 ],
               ),

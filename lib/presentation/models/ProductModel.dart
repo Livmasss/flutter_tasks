@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ProductModel {
   ProductModel(
       this.id,
@@ -14,4 +16,13 @@ class ProductModel {
   final String imageUri;
   final double cost;
   bool isFavorite = false;
+
+
+  IconData getFavoriteIconData() {
+    if (isFavorite) {
+      return Icons.favorite_outlined;
+    } else {
+      return Icons.favorite_outline;
+    }
+  }
 }

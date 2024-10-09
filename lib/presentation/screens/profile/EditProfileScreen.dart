@@ -58,11 +58,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
           MyTextFieldWidget(
               onChanged: (text) { profile.phoneNumber = text; },
+              initialValue: profile.phoneNumber,
               hintText: "Номер телефона"
           ),
           MyTextFieldWidget(
               onChanged: (text) { profile.email = text; },
-              hintText: "Элекктронная почта"
+              initialValue: profile.email,
+              hintText: "Электронная почта"
           ),
 
           const Spacer(),
