@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/ProductsData.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ShopCartItem.dart';
@@ -29,6 +28,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 var item = items[index];
+                var product = initialProducts.firstWhere((element) => item.id == element.id);
+
                 return ShopCartItem(
                   item: item,
                   onTap: () {
@@ -36,18 +37,20 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ProductDetailScreen(
-                          product: ProductModel(
-                            item.id,
-                            item.title,
-                            item.subtitle,
-                            item.imageUri,
-                            item.cost,
-                            false
-                          ), onDeleteClicked: () {
+                          product: product,
+                          onDeleteClicked: () {
                             setState(() {
                               items.remove(item);
                               initialProducts.removeWhere((element) => element.id == item.id);
-                            });}, onInCartPressed: () {},
+                            });
+                            },
+                          onInCartPressed: () {},
+                          onLikeClicked: () {
+                            setState(() {
+                              var product = initialProducts.firstWhere((element) => element.id == item.id);
+                              product.isFavorite = !product.isFavorite;
+                            });
+                            },
                         ),
                       ),
                     );

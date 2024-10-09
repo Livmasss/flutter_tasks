@@ -5,12 +5,14 @@ class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
   final VoidCallback onDeleteClicked;
   final VoidCallback onInCartPressed;
+  final VoidCallback onLikeClicked;
 
   const ProductDetailScreen({
     super.key,
     required this.product,
     required this.onDeleteClicked,
     required this.onInCartPressed,
+    required this.onLikeClicked,
   });
 
   @override
@@ -45,11 +47,23 @@ class ProductDetailScreen extends StatelessWidget {
 
             Row(
               children: [
+                IconButton(
+                    onPressed: () {
+                      onLikeClicked();
+                    },
+                    icon: Icon(product.getFavoriteIconData())
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
                 OutlinedButton(
                   onPressed: () {
                     onInCartPressed();
                   },
                   child: const Text("В корзину")
+                ),
+                const SizedBox(
+                  width: 8,
                 ),
                 OutlinedButton(
                   onPressed: () {
