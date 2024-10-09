@@ -52,6 +52,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                       item.count = value;
                     });
                     },
+                  deleteItem: () {
+                    setState(() {
+                      items.remove(item);
+                    });
+                  },
                 );
               },
             ),

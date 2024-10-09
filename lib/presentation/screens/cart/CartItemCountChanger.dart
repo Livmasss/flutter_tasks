@@ -4,36 +4,17 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CartItemCountChanger extends StatefulWidget {
-  int count;
-  final VoidCallback increaseCount;
-  final VoidCallback decreaseCount;
+class CartItemCountChanger extends StatelessWidget {
+  final int count;
+  final VoidCallback onIncreasePressed;
+  final VoidCallback onDecreasePressed;
 
-  CartItemCountChanger({
+  const CartItemCountChanger({
     super.key,
     required this.count,
-    required this.increaseCount,
-    required this.decreaseCount,
+    required this.onIncreasePressed,
+    required this.onDecreasePressed,
   });
-
-  @override
-  State<CartItemCountChanger> createState() => _CartItemCountChangerState(
-    this.count,
-    this.increaseCount,
-    this.decreaseCount,
-  );
-}
-
-class _CartItemCountChangerState extends State<CartItemCountChanger> {
-  int count;
-  final VoidCallback increaseCount;
-  final VoidCallback decreaseCount;
-
-  _CartItemCountChangerState(
-      this.count,
-      this.increaseCount,
-      this.decreaseCount,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +23,7 @@ class _CartItemCountChangerState extends State<CartItemCountChanger> {
       children: [
         IconButton(
             onPressed: () {
-              setState(() {
-                increaseCount();
-                count = count + 1;
-              });
+                onIncreasePressed();
             },
             icon: const Icon(Icons.plus_one)
         ),
@@ -59,10 +37,7 @@ class _CartItemCountChangerState extends State<CartItemCountChanger> {
         ),
         IconButton(
             onPressed: () {
-              setState(() {
-                decreaseCount();
-                count = count - 1;
-              });
+                onDecreasePressed();
             },
             icon: const Icon(Icons.exposure_minus_1)
         ),
