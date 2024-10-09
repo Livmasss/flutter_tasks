@@ -39,7 +39,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       builder: (context) => ProductDetailScreen(product: product),
                     ),
                   );
-                  },
+                },
+                onLikeClicked: () {
+                  setState(() {
+                    product.isFavorite = !product.isFavorite;
+                  });
+              },
               );
               },
           ),

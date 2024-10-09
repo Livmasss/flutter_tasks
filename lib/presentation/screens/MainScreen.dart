@@ -41,6 +41,11 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 );
               },
+              onLikeClicked: () {
+                setState(() {
+                  product.isFavorite = !product.isFavorite;
+                });
+                },
             );
           },
         ),
