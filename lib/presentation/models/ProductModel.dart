@@ -17,7 +17,6 @@ class ProductModel {
   final double cost;
   bool isFavorite = false;
 
-
   IconData getFavoriteIconData() {
     if (isFavorite) {
       return Icons.favorite_outlined;

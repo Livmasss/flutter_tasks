@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_task3/presentation/screens/FavoriteScreen.dart';
 import 'package:flutter_task3/presentation/screens/MainScreen.dart';
-import 'package:flutter_task3/presentation/screens/profile/ShoppingCartScreen.dart';
+import 'package:flutter_task3/presentation/screens/cart/ShoppingCartScreen.dart';
 import 'package:flutter_task3/presentation/screens/profile/ProfileScreen.dart';
 
 class MainRouter extends StatefulWidget {

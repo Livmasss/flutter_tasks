@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ShoppingCartBottomBar extends StatefulWidget {
+class ShoppingCartBottomBar extends StatelessWidget {
   double totalPrice;
   int totalCount;
 
@@ -9,22 +9,6 @@ class ShoppingCartBottomBar extends StatefulWidget {
     required this.totalPrice,
     required this.totalCount
   });
-
-  @override
-  State<ShoppingCartBottomBar> createState() => _ShoppingCartBottomBarState(
-      this.totalPrice,
-      this.totalCount
-  );
-}
-
-class _ShoppingCartBottomBarState extends State<ShoppingCartBottomBar> {
-  double totalPrice;
-  int totalCount;
-
-  _ShoppingCartBottomBarState(
-      this.totalPrice,
-      this.totalCount
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +22,11 @@ class _ShoppingCartBottomBarState extends State<ShoppingCartBottomBar> {
           ],
         ),
         SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
-            child: const Text("Купить", style: TextStyle(fontSize: 20)),
-            onPressed: () {},
-          )
+            width: double.infinity,
+            child: OutlinedButton(
+              child: const Text("Купить", style: TextStyle(fontSize: 20)),
+              onPressed: () {},
+            )
         )
       ],
     );

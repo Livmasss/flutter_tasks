@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ShopCartItem.dart';
 
 import '../../../data/ShoppingCartData.dart';
-import '../../models/ProductModel.dart';
-import '../cart/BottomBar.dart';
+import 'BottomBar.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
@@ -14,13 +15,7 @@ class ShoppingCartScreen extends StatefulWidget {
 }
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
-  List items = [];
-
-  @override
-  void initState() {
-    super.initState();
-    items.addAll(initialShoppingCart);
-  }
+  List<ShopCartItemModel> items = initialShoppingCartData;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +29,29 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               itemBuilder: (BuildContext context, int index) {
                 var item = items[index];
                 return ShopCartItem(
-                  product: item,
+                  item: item,
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailScreen(product: item),
+                        builder: (context) => ProductDetailScreen(
+                          product: ProductModel(
+                            item.id,
+                            item.title,
+                            item.subtitle,
+                            item.imageUri,
+                            item.cost,
+                            false
+                          ),
+                        ),
                       ),
                     );
                   },
+                  onCountChanged: (int value) {
+                    setState(() {
+                      item.count = value;
+                    });
+                    },
                 );
               },
             ),
@@ -52,7 +61,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: ShoppingCartBottomBar(
               totalPrice: sumPrices(),
-              totalCount: getCartListLength(),
+              totalCount: getCartTotalCount(),
             ),
           ),
         ],
@@ -60,19 +69,20 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
     );
   }
 
-  int getCartListLength() {
-    if (items.length != null) {
-      return items.length;
-    } else {
-      return 0;
+  int getCartTotalCount() {
+    int count = 0;
+
+    for (int i = 0; i < items.length; i++) {
+      count = count + items[i].count;
     }
+    return count;
   }
 
   double sumPrices() {
     double sum = 0;
 
     for (int i = 0; i < items.length; i++) {
-      sum += items[i].cost;
+      sum += items[i].cost * items[i].count;
     }
     return sum;
   }

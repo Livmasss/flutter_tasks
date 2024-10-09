@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
 
-import '../models/ProductModel.dart';
+import '../models/ShopCartItemModel.dart';
+import '../screens/cart/CartItemCountChanger.dart';
 
 class ShopCartItem extends StatefulWidget {
-  final ProductModel product;
+  final ShopCartItemModel item;
   final VoidCallback onTap;
+  final ValueChanged<int> onCountChanged;
 
   const ShopCartItem({
     super.key,
-    required this.product,
+    required this.item,
     required this.onTap,
+    required this.onCountChanged
   });
 
   @override
   State<ShopCartItem> createState() => _ShopCartItemState(
-    product: product,
-    onTap: onTap
+      item: item,
+      onTap: onTap,
+      onCountChanged: onCountChanged
   );
 }
 
 class _ShopCartItemState extends State<ShopCartItem> {
-  final ProductModel product;
+  final ShopCartItemModel item;
   final VoidCallback onTap;
+  final ValueChanged<int> onCountChanged;
 
   _ShopCartItemState({
-    required this.product,
+    required this.item,
     required this.onTap,
+    required this.onCountChanged
   });
 
   @override
@@ -34,20 +40,21 @@ class _ShopCartItemState extends State<ShopCartItem> {
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: ListTile(
         leading: Image.network(
-          product.imageUri,
+          item.imageUri,
           width: 70,
           height: 70,
           fit: BoxFit.cover,
         ),
-        title: Text(product.title),
-        subtitle: Text("${product.cost}₽"),
-        trailing: IconButton(
-          onPressed: () {
-            setState(() {
-              product.isFavorite = !product.isFavorite;
-            });
+        title: Text(item.title),
+        subtitle: Text("${item.cost}₽"),
+        trailing: CartItemCountChanger(
+          count: item.count,
+          increaseCount: () {
+            onCountChanged(item.count + 1);
           },
-          icon: Icon(product.getFavoriteIconData())
+          decreaseCount: () {
+            onCountChanged(item.count - 1);
+          },
         ),
         onTap: onTap,
       )
