@@ -34,7 +34,7 @@ class _ProductWidgetState extends State<ProductWidget> {
       child: GestureDetector(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(0),
+          padding: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
