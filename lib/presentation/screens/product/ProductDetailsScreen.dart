@@ -3,8 +3,13 @@ import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
+  final VoidCallback onDeleteClicked;
 
-  const ProductDetailScreen({super.key, required this.product});
+  const ProductDetailScreen({
+    super.key,
+    required this.product,
+    required this.onDeleteClicked
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,20 @@ class ProductDetailScreen extends StatelessWidget {
               product.subtitle,
               style: const TextStyle(fontSize: 16),
             ),
+
+            const Spacer(),
+
+            Row(
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    onDeleteClicked();
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Удалить")
+                ),
+              ],
+            )
           ],
         ),
       ),

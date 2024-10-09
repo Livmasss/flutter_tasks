@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/ProductsData.dart';
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
@@ -42,7 +43,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                             item.imageUri,
                             item.cost,
                             false
-                          ),
+                          ), onDeleteClicked: () {
+                            setState(() {
+                              items.remove(item);
+                              initialProducts.removeWhere((element) => element.id == item.id);
+                            });},
                         ),
                       ),
                     );

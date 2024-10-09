@@ -37,7 +37,15 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductDetailScreen(product: product),
+                    builder: (context) => ProductDetailScreen(
+                      product: product,
+                      onDeleteClicked: () {
+                        setState(() {
+                          products.remove(product);
+                          initialProducts.remove(product);
+                        });
+                      },
+                    ),
                   ),
                 );
               },
