@@ -4,11 +4,13 @@ import 'package:flutter_task3/presentation/models/ProductModel.dart';
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
   final VoidCallback onDeleteClicked;
+  final VoidCallback onInCartPressed;
 
   const ProductDetailScreen({
     super.key,
     required this.product,
-    required this.onDeleteClicked
+    required this.onDeleteClicked,
+    required this.onInCartPressed,
   });
 
   @override
@@ -43,6 +45,12 @@ class ProductDetailScreen extends StatelessWidget {
 
             Row(
               children: [
+                OutlinedButton(
+                  onPressed: () {
+                    onInCartPressed();
+                  },
+                  child: const Text("В корзину")
+                ),
                 OutlinedButton(
                   onPressed: () {
                     onDeleteClicked();

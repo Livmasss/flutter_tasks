@@ -47,7 +47,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                             setState(() {
                               items.remove(item);
                               initialProducts.removeWhere((element) => element.id == item.id);
-                            });},
+                            });}, onInCartPressed: () {},
                         ),
                       ),
                     );

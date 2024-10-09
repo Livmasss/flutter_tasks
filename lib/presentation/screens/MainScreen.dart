@@ -4,6 +4,9 @@ import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.d
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
 
+import '../../data/ShoppingCartData.dart';
+import '../models/ShopCartItemModel.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -44,7 +47,15 @@ class _MainScreenState extends State<MainScreen> {
                           products.remove(product);
                           initialProducts.remove(product);
                         });
-                      },
+                      }, onInCartPressed: () {
+                      initialShoppingCartData.add(ShopCartItemModel(
+                          product.id,
+                          product.title,
+                          product.subtitle,
+                          product.imageUri,
+                          product.cost,
+                          1
+                      )); },
                     ),
                   ),
                 );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/ProductsData.dart';
+import 'package:flutter_task3/data/ShoppingCartData.dart';
+import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
 import '../widgets/ProductWidget.dart';
@@ -41,6 +43,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                           products.remove(product);
                           initialProducts.remove(product);
                         });
+                      }, onInCartPressed: () {
+                        initialShoppingCartData.add(ShopCartItemModel(
+                            product.id,
+                            product.title,
+                            product.subtitle,
+                            product.imageUri,
+                            product.cost,
+                            1
+                        ));
                       },),
                     ),
                   );
