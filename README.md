@@ -11,5 +11,4 @@
 - Добавить возможность редактирования профиля.
 
 Описание работы<br>
-https://github.com/user-attachments/assets/de8f7712-c649-44fa-a0f6-d036119a6d7e
-
+https://github.com/user-attachments/assets/a228c235-0fa1-462d-970e-e185cc803e80
