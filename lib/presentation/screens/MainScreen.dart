@@ -55,8 +55,8 @@ class _MainScreenState extends State<MainScreen> {
                           product.imageUri,
                           product.cost,
                           1
-                      )); },
-                      onLikeClicked: () {
+                      ));
+                      }, onLikeClicked: () {
                         setState(() {
                           product.isFavorite = !product.isFavorite;
                         });

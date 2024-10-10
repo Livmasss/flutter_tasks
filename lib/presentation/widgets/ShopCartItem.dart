@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/ShopCartItemModel.dart';
 import '../screens/cart/CartItemCountChanger.dart';
 
+import 'package:flutter_slidable/flutter_slidable.dart';
+
 class ShopCartItem extends StatelessWidget {
   final ShopCartItemModel item;
   final VoidCallback onTap;
@@ -21,12 +23,26 @@ class ShopCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Card(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Dismissible(
-          key: Key(item.id.toString()),
-          onDismissed: (direction) {
-            deleteItem();
-          },
-          background: Container(color: Colors.red),
+      child: Slidable(
+
+          direction: Axis.horizontal,
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            extentRatio: 0.25,
+            children: [
+              SlidableAction(
+                onPressed: (context) {
+                  deleteItem();
+                },
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Удалить',
+              ),
+            ],
+          ),
+
+          key: ValueKey(item.id.toString()),
           child: ListTile(
             leading: Image.network(
               item.imageUri,
