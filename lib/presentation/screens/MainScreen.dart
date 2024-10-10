@@ -45,6 +45,7 @@ class _MainScreenState extends State<MainScreen> {
                       onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
+                          initialShoppingCartData.removeWhere((element) => element.id == product.id);
                           initialProducts.remove(product);
                         });
                       }, onInCartPressed: () {

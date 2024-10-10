@@ -38,9 +38,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductDetailScreen(product: product, onDeleteClicked: () {
+                      builder: (context) => ProductDetailScreen(product: product,
+                        onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
+                          initialShoppingCartData.removeWhere((element) => element.id == product.id);
                           initialProducts.remove(product);
                         });
                       }, onInCartPressed: () {
