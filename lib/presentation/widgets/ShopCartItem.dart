@@ -28,7 +28,7 @@ class ShopCartItem extends StatelessWidget {
           direction: Axis.horizontal,
           endActionPane: ActionPane(
             motion: const ScrollMotion(),
-            extentRatio: 0.25,
+            extentRatio: 0.5,
             children: [
               SlidableAction(
                 onPressed: (context) {
