@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_task3/presentation/screens/FavoriteScreen.dart';
-import 'package:flutter_task3/presentation/screens/MainScreen.dart';
 import 'package:flutter_task3/presentation/screens/cart/ShoppingCartScreen.dart';
+import 'package:flutter_task3/presentation/screens/home/MainScreen.dart';
 import 'package:flutter_task3/presentation/screens/profile/ProfileScreen.dart';
 
 class MainRouter extends StatefulWidget {
@@ -24,7 +21,6 @@ class _MainRouterState extends State<MainRouter> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     MainScreen(),
-    FavoriteScreen(),
     ShoppingCartScreen(),
     ProfileScreen(),
   ];
@@ -39,10 +35,6 @@ class _MainRouterState extends State<MainRouter> {
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Главная',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              label: 'Избранное',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
