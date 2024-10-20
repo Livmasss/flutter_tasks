@@ -28,24 +28,36 @@ class _MainRouterState extends State<MainRouter> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+          selectedFontSize: 12,
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(_selectedIndex == 0 ? 'lib/assets/icons/Home_active.svg' : 'lib/assets/icons/Home.svg'),
+              icon: SvgPicture.asset(
+                  _selectedIndex == 0 ? 'lib/assets/icons/Home_active.svg' : 'lib/assets/icons/Home.svg',
+                  height: 32, width: 76,
+                  fit: BoxFit.scaleDown
+              ),
               label: 'Главная',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(_selectedIndex == 1 ? 'lib/assets/icons/Cart_active.svg' : 'lib/assets/icons/Cart.svg'),
+              icon: SvgPicture.asset(
+                  _selectedIndex == 1 ? 'lib/assets/icons/Cart_active.svg' : 'lib/assets/icons/Cart.svg',
+                  height: 32, width: 76,
+                  fit: BoxFit.scaleDown
+              ),
               label: 'Корзина',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(_selectedIndex == 2 ? 'lib/assets/icons/User_active.svg' : 'lib/assets/icons/User.svg'),
+              icon: SvgPicture.asset(
+                  _selectedIndex == 2 ? 'lib/assets/icons/User_active.svg' : 'lib/assets/icons/User.svg',
+                  height: 32, width: 76,
+                  fit: BoxFit.scaleDown
+              ),
               label: 'Профиль',
-            )
+            ),
           ],
           onTap: _onItemTapped,
           currentIndex: _selectedIndex
