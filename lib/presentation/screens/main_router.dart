@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_task3/presentation/screens/cart/ShoppingCartScreen.dart';
-import 'package:flutter_task3/presentation/screens/home/MainScreen.dart';
+import 'package:flutter_task3/presentation/screens/home/main_screen.dart';
 import 'package:flutter_task3/presentation/screens/profile/ProfileScreen.dart';
 
 class MainRouter extends StatefulWidget {
@@ -29,14 +29,23 @@ class _MainRouterState extends State<MainRouter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: SafeArea(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        )
+      ),
       bottomNavigationBar: BottomNavigationBar(
           selectedFontSize: 12,
+          unselectedFontSize: 12,
+          unselectedLabelStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onSurfaceVariant
+          ),
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                  _selectedIndex == 0 ? 'lib/assets/icons/Home_active.svg' : 'lib/assets/icons/Home.svg',
+                  _selectedIndex == 0 ? 'lib/assets/icons/home_active.svg' : 'lib/assets/icons/home.svg',
                   height: 32, width: 76,
                   fit: BoxFit.scaleDown
               ),
@@ -44,7 +53,7 @@ class _MainRouterState extends State<MainRouter> {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                  _selectedIndex == 1 ? 'lib/assets/icons/Cart_active.svg' : 'lib/assets/icons/Cart.svg',
+                  _selectedIndex == 1 ? 'lib/assets/icons/cart_active.svg' : 'lib/assets/icons/cart.svg',
                   height: 32, width: 76,
                   fit: BoxFit.scaleDown
               ),
@@ -52,7 +61,7 @@ class _MainRouterState extends State<MainRouter> {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                  _selectedIndex == 2 ? 'lib/assets/icons/User_active.svg' : 'lib/assets/icons/User.svg',
+                  _selectedIndex == 2 ? 'lib/assets/icons/user_active.svg' : 'lib/assets/icons/user.svg',
                   height: 32, width: 76,
                   fit: BoxFit.scaleDown
               ),
