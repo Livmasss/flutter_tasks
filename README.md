@@ -18,7 +18,7 @@ ___
 | 4 | |
 | 5 | |
 | 6 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_6) |
-| 7 | |
+| 7 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_7) |
 | 8 | |
 | 9 | |
 | 10 | |
