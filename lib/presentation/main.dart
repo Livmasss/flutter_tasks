@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/presentation/screens/main_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'my_theme.dart';
 
