@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../res/dimens.dart';
-import '../home/components/profile_additional_menu.dart';
-import '../home/components/profile_menu.dart';
-import '../home/components/profile_overview.dart';
-import '../home/models/home_menu_model.dart';
+import 'components/profile_additional_menu.dart';
+import 'components/profile_menu.dart';
+import 'components/profile_overview.dart';
+import 'models/home_menu_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

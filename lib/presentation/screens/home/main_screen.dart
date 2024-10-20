@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/res/dimens.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -17,6 +18,14 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        const SizedBox(height: spacingLarge),
+        Text(
+          "Каталог услуг",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+      ],
+    );
   }
 }

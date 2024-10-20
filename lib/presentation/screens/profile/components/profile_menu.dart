@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/home_menu_model.dart';
-import 'home_menu_item.dart';
+import 'profile_menu_item.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({

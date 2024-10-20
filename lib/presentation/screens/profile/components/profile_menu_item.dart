@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/screens/home/models/home_menu_model.dart';
 
 import '../../../../res/dimens.dart';
+import '../models/home_menu_model.dart';
 
 class HomeMenuItem extends StatelessWidget {
   const HomeMenuItem({

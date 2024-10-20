@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../res/dimens.dart';
+
 class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
 
@@ -10,6 +12,14 @@ class ShoppingCartScreen extends StatefulWidget {
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        const SizedBox(height: spacingLarge),
+        Text(
+          "Корзина",
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+      ],
+    );
   }
 }
