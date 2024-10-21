@@ -16,6 +16,10 @@ ThemeData getTheme(BuildContext context) {
           fontSize: 24,
           color: Theme.of(context).colorScheme.onSurface
       ),
+      headlineSmall: GoogleFonts.montserrat(
+          fontSize: 20,
+          color: Theme.of(context).colorScheme.onSurface
+      ),
       bodyLarge: GoogleFonts.montserrat(
           fontSize: 17,
           color: Theme.of(context).colorScheme.onSurface

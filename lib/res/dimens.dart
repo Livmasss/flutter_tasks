@@ -2,8 +2,13 @@ import 'dart:ui';
 
 const double navigationFontSize = 12;
 
-const double mainMenuHeight = 64;
-const double mainMenuImageSize = 32;
+const double screenContentWidth = 335;
+
+const double profileMenuHeight = 64;
+const double profileMenuImageSize = 32;
+
+const double cartItemHeight = 138;
+const double catalogItemHeight = 138;
 
 const Radius radiusMedium = Radius.circular(12);
 const Radius radiusSmall = Radius.circular(12);

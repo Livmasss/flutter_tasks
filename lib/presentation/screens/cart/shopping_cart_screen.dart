@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/presentation/screens/cart/components/cart_summary.dart';
+import 'package:flutter_task3/presentation/screens/cart/components/shopping_cart_list.dart';
+import 'package:flutter_task3/presentation/screens/cart/models/cart_item_model.dart';
+import 'package:flutter_task3/presentation/widgets/my_text_button.dart';
 
 import '../../../res/dimens.dart';
 
@@ -10,16 +14,52 @@ class ShoppingCartScreen extends StatefulWidget {
 }
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
+  List<CartItemModel> cartItems = [
+    CartItemModel(
+        "Клинический анализ крови с лейкоцитарной формулировкой",
+        690,
+        1
+    ),
+    CartItemModel(
+        "ПЦР-тест на определение РНК коронавируса стандартный",
+        1800,
+        1
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: spacingLarge),
         Text(
           "Корзина",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
+
+        const SizedBox(height: 38,),
+        ShoppingCartList(items: cartItems),
+
+        const SizedBox(height: 40,),
+        CartSummary(sum: sumCartItemsPrice()),
+        
+        const Spacer(),
+        MyTextButton(
+          text: "Перейти к оформлению заказа",
+          onPressed: () {},
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        const SizedBox(height: 30,),
       ],
     );
+  }
+
+  int sumCartItemsPrice() {
+    int sum = 0;
+    for (var i in cartItems) {
+      sum += i.price;
+    }
+    return sum;
   }
 }

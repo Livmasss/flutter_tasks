@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class CartItemModel {
   CartItemModel(
       this.title,
@@ -8,6 +6,6 @@ class CartItemModel {
       );
 
   final String title;
-  final Int price;
-  final Int patientsNumber;
+  final int price;
+  final int patientsNumber;
 }

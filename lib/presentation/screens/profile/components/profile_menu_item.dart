@@ -14,12 +14,12 @@ class HomeMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: mainMenuHeight,
+      height: profileMenuHeight,
       child: Row(
         children: [
           SizedBox(
-            height: mainMenuImageSize,
-            width: mainMenuImageSize,
+            height: profileMenuImageSize,
+            width: profileMenuImageSize,
             child: Image.asset(model.iconPath),
           ),
           const SizedBox(width: 20),
