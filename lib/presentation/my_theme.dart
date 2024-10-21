@@ -14,11 +14,13 @@ ThemeData getTheme(BuildContext context) {
     textTheme: TextTheme(
       headlineMedium: GoogleFonts.montserrat(
           fontSize: 24,
-          color: Theme.of(context).colorScheme.onSurface
+          color: Theme.of(context).colorScheme.onSurface,
+          fontWeight: FontWeight.w500
       ),
       headlineSmall: GoogleFonts.montserrat(
           fontSize: 20,
-          color: Theme.of(context).colorScheme.onSurface
+          color: Theme.of(context).colorScheme.onSurface,
+          fontWeight: FontWeight.w500
       ),
       bodyLarge: GoogleFonts.montserrat(
           fontSize: 17,
