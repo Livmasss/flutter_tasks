@@ -46,6 +46,7 @@ class CartItem extends StatelessWidget {
           const SizedBox(height: 34,),
 
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("${model.price} ₽"),
               const Spacer(),

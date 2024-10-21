@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/res/dimens.dart';
 
+import 'components/service_item.dart';
+import 'models/service_model.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -25,6 +28,16 @@ class _MainScreenState extends State<MainScreen> {
           "Каталог услуг",
           style: Theme.of(context).textTheme.headlineMedium,
         ),
+        const SizedBox(height: 38),
+
+        ServiceItem(
+            model: ServiceModel(
+              "ПЦР-тест на определение РНК коронавируса стандартный",
+              1800,
+              "2 дня"
+            ),
+            onAddClick: () {}
+        )
       ],
     );
   }

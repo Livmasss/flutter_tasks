@@ -48,7 +48,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         MyTextButton(
           text: "Перейти к оформлению заказа",
           onPressed: () {},
-          style: Theme.of(context).textTheme.bodyLarge,
+          textStyle: Theme.of(context).textTheme.bodyLarge,
+          width: double.infinity,
         ),
         const SizedBox(height: 30,),
       ],
