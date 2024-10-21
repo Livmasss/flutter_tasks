@@ -22,7 +22,11 @@ class ShoppingCartList extends StatelessWidget {
             children: [
               if (index > 0)
                 const SizedBox(height: spacingSmall,),
-              CartItem(model: items[index])
+              CartItem(
+                model: items[index],
+                onPlusPressed: () {},
+                onMinusPressed: () {},
+              )
             ],
           );
         }

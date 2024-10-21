@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_task3/presentation/screens/cart/models/cart_item_model.dart';
 import 'package:flutter_task3/res/dimens.dart';
+
+import '../../../widgets/svg_icon_button.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
-    required this.model
+    required this.model,
+    required this.onMinusPressed,
+    required this.onPlusPressed,
   });
 
   final CartItemModel model;
+  final VoidCallback onMinusPressed;
+  final VoidCallback onPlusPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +35,11 @@ class CartItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
-              SvgPicture.asset(
-                "lib/assets/icons/delete.svg",
-                  height: 20, width: 20,
-                  fit: BoxFit.scaleDown
-              )
+              SvgIconButton(
+                size: iconSizeSmall,
+                iconPath: "lib/assets/icons/delete.svg",
+                onPressed: () {},
+              ),
             ],
           ),
 
@@ -54,7 +59,34 @@ class CartItem extends StatelessWidget {
                     width: 64,
                     height: 32,
                     color: const Color(0xFFF5F5F9),
-                    // child: const Placeholder()
+                    child: Padding(
+                      padding: const EdgeInsets.all(6),
+                      child: Row(
+                        children: [
+                          SvgIconButton(
+                            size: iconSizeSmall,
+                            onPressed: onMinusPressed,
+                            iconPath: "lib/assets/icons/minus.svg",
+                          ),
+
+                          const Spacer(),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 2),
+                            child: VerticalDivider(
+                              width: 1,
+                              color: Color(0xFFEBEBEB),
+                            ),
+                          ),
+                          const Spacer(),
+
+                          SvgIconButton(
+                            size: iconSizeSmall,
+                            onPressed: onPlusPressed,
+                            iconPath: "lib/assets/icons/plus.svg",
+                          ),
+                        ],
+                      )
+                    )
                 ),
               )
             ],
