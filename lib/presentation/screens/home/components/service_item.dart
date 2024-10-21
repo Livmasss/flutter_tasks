@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/screens/cart/models/cart_item_model.dart';
 import 'package:flutter_task3/presentation/widgets/my_text_button.dart';
 import 'package:flutter_task3/res/dimens.dart';
 
-import '../../../widgets/svg_icon_button.dart';
 import '../models/service_model.dart';
 
 class ServiceItem extends StatelessWidget {
