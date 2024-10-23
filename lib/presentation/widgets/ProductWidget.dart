@@ -43,7 +43,14 @@ class ProductWidget extends StatelessWidget {
               ),
               Text("${product.cost}₽"),
               Text(product.title, maxLines: 1, overflow: TextOverflow.ellipsis),
-              Text(product.subtitle, maxLines: 2, overflow: TextOverflow.ellipsis),
+              Text(
+                  product.subtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 10
+                ),
+              ),
             ],
           ),
         ),
