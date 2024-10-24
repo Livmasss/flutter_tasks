@@ -3,6 +3,8 @@ import 'package:flutter_task3/presentation/models/ProductModel.dart';
 import 'package:flutter_task3/presentation/widgets/MyNumericFieldWidget.dart';
 import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
 
+import '../../../data/ProductsData.dart';
+
 class CreateProductScreen extends StatefulWidget {
   const CreateProductScreen({
     super.key,
@@ -61,16 +63,16 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
           const Spacer(),
           OutlinedButton(
               onPressed: () {
-                onProductCreated(
-                  ProductModel(
-                      null,
-                      title,
-                      subtitle,
-                      imageLink,
-                      price,
-                      false
-                  )
+                var newProduct = ProductModel(
+                    null,
+                    title,
+                    subtitle,
+                    imageLink,
+                    price,
+                    false
                 );
+                createProduct(newProduct);
+                onProductCreated(newProduct);
 
                 Navigator.pop(context);
               },
