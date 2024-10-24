@@ -19,7 +19,7 @@ ___
 | 5 | |
 | 6 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_6) |
 | 7 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_7) |
-| 8 | |
+| 8 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_8) |
 | 9 | |
 | 10 | |
 | 11 | |
