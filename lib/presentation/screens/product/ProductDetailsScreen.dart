@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
+import '../../../data/ProductsData.dart';
+
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
   final VoidCallback onDeleteClicked;
@@ -76,6 +78,9 @@ class ProductDetailScreen extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     onDeleteClicked();
+                    if (product.id != null) {
+                      deleteProduct(product.id!);
+                    }
                     Navigator.pop(context);
                   },
                   child: const Text("Удалить")

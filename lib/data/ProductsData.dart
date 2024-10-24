@@ -31,6 +31,12 @@ void createProduct(ProductModel product) async {
   );
 }
 
+void deleteProduct(int id) async {
+  await getHttpClient().delete(
+      "/products/delete/$id"
+  );
+}
+
 ProductModel deserializeProduct(dynamic productJson) {
   return ProductModel(
       productJson['ID'],
