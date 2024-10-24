@@ -22,7 +22,9 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     var futureProducts = getProducts();
     futureProducts.then((value) => {
-      products.addAll(value)
+      setState(() {
+        products.addAll(value);
+      })
     });
   }
 
@@ -49,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                         setState(() {
                           products.remove(product);
                           initialShoppingCartData.removeWhere((element) => element.id == product.id);
-                          initialProducts.remove(product);
+                          sharedProducts.remove(product);
                         });
                       }, onInCartPressed: () {
                       initialShoppingCartData.add(ShopCartItemModel(

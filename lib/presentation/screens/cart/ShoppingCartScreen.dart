@@ -28,7 +28,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               itemCount: items.length,
               itemBuilder: (BuildContext context, int index) {
                 var item = items[index];
-                var product = initialProducts.firstWhere((element) => item.id == element.id);
+                var product = sharedProducts.firstWhere((element) => item.id == element.id);
 
                 return ShopCartItem(
                   item: item,
@@ -41,13 +41,13 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                           onDeleteClicked: () {
                             setState(() {
                               items.remove(item);
-                              initialProducts.removeWhere((element) => element.id == item.id);
+                              sharedProducts.removeWhere((element) => element.id == item.id);
                             });
                             },
                           onInCartPressed: () {},
                           onLikeClicked: () {
                             setState(() {
-                              var product = initialProducts.firstWhere((element) => element.id == item.id);
+                              var product = sharedProducts.firstWhere((element) => element.id == item.id);
                               product.isFavorite = !product.isFavorite;
                             });
                             },

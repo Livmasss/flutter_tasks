@@ -26,24 +26,32 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(product.imageUri),
-            const SizedBox(height: 16.0),
-            Text(
-              product.title,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Flexible(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Image.network(
+                      product.imageUri,
+                    ),
+                    const SizedBox(height: 16.0),
+                    Text(
+                      product.title,
+                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+                    Text(
+                      "${product.cost}₽",
+                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      product.subtitle,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-            Text(
-              "${product.cost}₽",
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              product.subtitle,
-              style: const TextStyle(fontSize: 16),
-            ),
-
-            const Spacer(),
 
             Row(
               children: [

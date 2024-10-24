@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/ProductsData.dart';
 import 'package:flutter_task3/data/ShoppingCartData.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
+import '../../data/ProductsData.dart';
 import '../widgets/ProductWidget.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
     super.initState();
-    products.addAll(initialProducts.where((element) => element.isFavorite));
+    products.addAll(sharedProducts.where((element) => element.isFavorite));
   }
 
   @override
@@ -43,7 +43,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         setState(() {
                           products.remove(product);
                           initialShoppingCartData.removeWhere((element) => element.id == product.id);
-                          initialProducts.remove(product);
+                          sharedProducts.remove(product);
                         });
                       }, onInCartPressed: () {
                         initialShoppingCartData.add(ShopCartItemModel(
