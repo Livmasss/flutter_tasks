@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+
 import 'dio_config.dart';
 
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
@@ -8,6 +10,9 @@ Future<List<ProductModel>> getProducts() async {
   if (sharedProducts.isNotEmpty) {
     return sharedProducts;
   }
+  debugPrint(
+    "get /products request"
+  );
 
   var response = await getHttpClient().get(
     "/products"
@@ -28,6 +33,13 @@ void createProduct(ProductModel product) async {
   await getHttpClient().post(
     "/products/create",
     data: serializeProduct(product)
+  );
+}
+
+void updateProduct(ProductModel product) async {
+  await getHttpClient().put(
+      "/products/update/${product.id}",
+      data: serializeProduct(product)
   );
 }
 
@@ -54,7 +66,7 @@ dynamic serializeProduct(ProductModel product) {
     'Name': product.title,
     'Description': product.subtitle,
     'ImageURL': product.imageUri,
-    'Price': product.cost
+    'Price': product.price
   };
 }
 

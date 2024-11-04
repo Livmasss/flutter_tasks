@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/ProductsData.dart';
 import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
+import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
 
@@ -66,6 +67,11 @@ class _MainScreenState extends State<MainScreen> {
                         setState(() {
                           product.isFavorite = !product.isFavorite;
                         });
+                      },
+                      onEditPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => EditProductScreen(productModel: product,)
+                        ));
                       },
                     ),
                   ),

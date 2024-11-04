@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/ProductsData.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
+import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ShopCartItem.dart';
 
@@ -50,6 +51,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                               var product = sharedProducts.firstWhere((element) => element.id == item.id);
                               product.isFavorite = !product.isFavorite;
                             });
+                            },
+                          onEditPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => EditProductScreen(productModel: product,)
+                            ));
                             },
                         ),
                       ),

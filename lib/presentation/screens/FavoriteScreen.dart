@@ -38,15 +38,17 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductDetailScreen(product: product,
+                      builder: (context) => ProductDetailScreen(
+                        product: product,
                         onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
                           initialShoppingCartData.removeWhere((element) => element.id == product.id);
                           sharedProducts.remove(product);
                         });
-                      }, onInCartPressed: () {
-                        initialShoppingCartData.add(ShopCartItemModel(
+                      },
+                        onInCartPressed: () {
+                          initialShoppingCartData.add(ShopCartItemModel(
                             product.id,
                             product.title,
                             product.subtitle,
@@ -56,10 +58,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         ));
                       },
                         onLikeClicked: () {
-                        setState(() {
-                          product.isFavorite = !product.isFavorite;
-                        });
-                      },),
+                          setState(() {
+                            product.isFavorite = !product.isFavorite;
+                          });
+                        },
+                        onEditPressed: () {
+
+                          },
+                      ),
                     ),
                   );
                 },
@@ -67,9 +73,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   setState(() {
                     product.isFavorite = !product.isFavorite;
                   });
-              },
-              );
-              },
+              },);},
           ),
       )
     );

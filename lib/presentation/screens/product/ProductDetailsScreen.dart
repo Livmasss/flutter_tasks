@@ -8,6 +8,7 @@ class ProductDetailScreen extends StatelessWidget {
   final VoidCallback onDeleteClicked;
   final VoidCallback onInCartPressed;
   final VoidCallback onLikeClicked;
+  final VoidCallback onEditPressed;
 
   const ProductDetailScreen({
     super.key,
@@ -15,6 +16,7 @@ class ProductDetailScreen extends StatelessWidget {
     required this.onDeleteClicked,
     required this.onInCartPressed,
     required this.onLikeClicked,
+    required this.onEditPressed,
   });
 
   @override
@@ -42,7 +44,7 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
                     Text(
-                      "${product.cost}₽",
+                      "${product.price}₽",
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8.0),
@@ -84,6 +86,15 @@ class ProductDetailScreen extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: const Text("Удалить")
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                OutlinedButton(
+                    onPressed: () {
+                      onEditPressed();
+                    },
+                    child: const Text("Изм.")
                 ),
               ],
             )
