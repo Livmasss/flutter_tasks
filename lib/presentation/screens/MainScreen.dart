@@ -60,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
                           product.title,
                           product.subtitle,
                           product.imageUri,
-                          product.cost,
+                          product.price,
                           1
                       ));
                       }, onLikeClicked: () {
