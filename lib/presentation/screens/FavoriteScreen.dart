@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/ShoppingCartData.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
+import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
 import '../../data/ProductsData.dart';
@@ -62,8 +63,36 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                             product.isFavorite = !product.isFavorite;
                           });
                         },
-                        onEditPressed: () {
-
+                        onEditPressed: (onEdited) {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => EditProductScreen(
+                                onProductEdited: (newProduct) {
+                                  onEdited(newProduct);
+                                  var productsFuture = getProducts();
+                                  productsFuture.then((value) =>
+                                      setState(() {
+                                        products = value;
+                                      })
+                                  );
+                                  setState(() {
+                                    try {
+                                      var shopIndex = initialShoppingCartData.indexWhere((element) => element.id == newProduct.id);
+                                      initialShoppingCartData[shopIndex] = ShopCartItemModel(
+                                          newProduct.id,
+                                          newProduct.title,
+                                          newProduct.subtitle,
+                                          newProduct.imageUri,
+                                          newProduct.price,
+                                          1
+                                      );
+                                    }
+                                    catch(e) {};
+                                    sharedProducts[index] = newProduct;
+                                  });
+                                },
+                                productModel: product,
+                              )
+                          ));
                           },
                       ),
                     ),

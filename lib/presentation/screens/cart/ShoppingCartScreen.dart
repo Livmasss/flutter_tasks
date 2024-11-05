@@ -52,9 +52,30 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                               product.isFavorite = !product.isFavorite;
                             });
                             },
-                          onEditPressed: () {
+                          onEditPressed: (onEdited) {
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => EditProductScreen(productModel: product,)
+                                builder: (context) => EditProductScreen(
+                                  onProductEdited: (newProduct) {
+                                    onEdited(newProduct);
+
+                                    setState(() {
+                                      try {
+                                        var shopIndex = initialShoppingCartData.indexWhere((element) => element.id == newProduct.id);
+                                        initialShoppingCartData[shopIndex] = ShopCartItemModel(
+                                            newProduct.id,
+                                            newProduct.title,
+                                            newProduct.subtitle,
+                                            newProduct.imageUri,
+                                            newProduct.price,
+                                            1
+                                        );
+                                      }
+                                      catch(e) {};
+                                      sharedProducts[index] = newProduct;
+                                    });
+                                  },
+                                  productModel: product,
+                                )
                             ));
                             },
                         ),

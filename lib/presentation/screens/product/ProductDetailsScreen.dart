@@ -3,14 +3,14 @@ import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
 import '../../../data/ProductsData.dart';
 
-class ProductDetailScreen extends StatelessWidget {
-  final ProductModel product;
+class ProductDetailScreen extends StatefulWidget {
+  ProductModel product;
   final VoidCallback onDeleteClicked;
   final VoidCallback onInCartPressed;
   final VoidCallback onLikeClicked;
-  final VoidCallback onEditPressed;
+  final ValueChanged<ValueChanged<ProductModel>> onEditPressed;
 
-  const ProductDetailScreen({
+  ProductDetailScreen({
     super.key,
     required this.product,
     required this.onDeleteClicked,
@@ -20,10 +20,19 @@ class ProductDetailScreen extends StatelessWidget {
   });
 
   @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  @override
   Widget build(BuildContext context) {
+    final ValueChanged<ProductModel> onProductEdited = (newProduct) => setState(() {
+      widget.product = newProduct;
+    });
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.title),
+        title: Text(widget.product.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,21 +44,21 @@ class ProductDetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.network(
-                      product.imageUri,
+                      widget.product.imageUri,
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      product.title,
+                      widget.product.title,
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
                     Text(
-                      "${product.price}₽",
+                      "${widget.product.price}₽",
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      product.subtitle,
+                      widget.product.subtitle,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ],
@@ -61,16 +70,16 @@ class ProductDetailScreen extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      onLikeClicked();
+                      widget.onLikeClicked();
                     },
-                    icon: Icon(product.getFavoriteIconData())
+                    icon: Icon(widget.product.getFavoriteIconData())
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    onInCartPressed();
+                    widget.onInCartPressed();
                   },
                   child: const Text("В корзину")
                 ),
@@ -79,9 +88,9 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    onDeleteClicked();
-                    if (product.id != null) {
-                      deleteProduct(product.id!);
+                    widget.onDeleteClicked();
+                    if (widget.product.id != null) {
+                      deleteProduct(widget.product.id!);
                     }
                     Navigator.pop(context);
                   },
@@ -92,7 +101,7 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
                 OutlinedButton(
                     onPressed: () {
-                      onEditPressed();
+                      widget.onEditPressed(onProductEdited);
                     },
                     child: const Text("Изм.")
                 ),

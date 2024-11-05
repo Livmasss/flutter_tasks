@@ -45,16 +45,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             initialValue: profile.group,
           ),
           MyNumericFieldWidget(
-              onChanged: (text) {
-                try {
-                  profile.taskNumber = int.parse(text);
-                }
-                catch(e) {
-                  profile.taskNumber = 0;
-                }
-              },
-              hintText: "Номер работы",
-            initialValue: profile.taskNumber,
+            onChanged: (text) {
+              try {
+                profile.taskNumber = int.parse(text);
+              }
+              catch(e) {
+                profile.taskNumber = 0;
+              }
+            },
+            hintText: "Номер работы",
+            initialValue: profile.taskNumber.toDouble(),
           ),
           MyTextFieldWidget(
               onChanged: (text) { profile.phoneNumber = text; },

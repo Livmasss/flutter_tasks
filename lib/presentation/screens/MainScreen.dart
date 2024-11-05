@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProductDetailScreen(
-                      product: product,
+                      product: products[index],
                       onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
@@ -68,9 +68,35 @@ class _MainScreenState extends State<MainScreen> {
                           product.isFavorite = !product.isFavorite;
                         });
                       },
-                      onEditPressed: () {
+                      onEditPressed: (onEdited) {
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => EditProductScreen(productModel: product,)
+                            builder: (context) => EditProductScreen(
+                              onProductEdited: (newProduct) {
+                                onEdited(newProduct);
+                                var productsFuture = getProducts();
+                                productsFuture.then((value) =>
+                                  setState(() {
+                                    products = value;
+                                  })
+                              );
+                                setState(() {
+                                  try {
+                                    var shopIndex = initialShoppingCartData.indexWhere((element) => element.id == newProduct.id);
+                                    initialShoppingCartData[shopIndex] = ShopCartItemModel(
+                                        newProduct.id,
+                                        newProduct.title,
+                                        newProduct.subtitle,
+                                        newProduct.imageUri,
+                                        newProduct.price,
+                                        1
+                                    );
+                                  }
+                                  catch(e) {};
+                                  sharedProducts[index] = newProduct;
+                                });
+                            },
+                            productModel: product,
+                          )
                         ));
                       },
                     ),
