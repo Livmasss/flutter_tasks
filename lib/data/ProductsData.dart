@@ -47,7 +47,7 @@ void deleteProduct(int id) async {
 
 ProductModel deserializeProduct(dynamic productJson) {
   return ProductModel(
-      productJson['id'],
+      productJson['product_id'],
       productJson['name'],
       productJson['description'],
       productJson['image_url'],
@@ -58,7 +58,7 @@ ProductModel deserializeProduct(dynamic productJson) {
 
 dynamic serializeProduct(ProductModel product) {
   return {
-    'id': null,
+    'product_id': null,
     'name': product.title,
     'description': product.subtitle,
     'imageURL': product.imageUri,
