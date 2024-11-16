@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 
 import 'dio_config.dart';
 
@@ -10,9 +9,6 @@ Future<List<ProductModel>> getProducts() async {
   if (sharedProducts.isNotEmpty) {
     return sharedProducts;
   }
-  debugPrint(
-    "get /products request"
-  );
 
   var response = await getHttpClient().get(
     "/products"
@@ -31,54 +27,43 @@ Future<List<ProductModel>> getProducts() async {
 
 void createProduct(ProductModel product) async {
   await getHttpClient().post(
-    "/products/create",
+    "/products",
     data: serializeProduct(product)
   );
 }
 
 void updateProduct(ProductModel product) async {
   await getHttpClient().put(
-      "/products/update/${product.id}",
+      "/products/${product.id}",
       data: serializeProduct(product)
   );
 }
 
 void deleteProduct(int id) async {
   await getHttpClient().delete(
-      "/products/delete/$id"
+      "/products/$id"
   );
 }
 
 ProductModel deserializeProduct(dynamic productJson) {
   return ProductModel(
-      productJson['ID'],
-      productJson['Name'],
-      productJson['Description'],
-      productJson['ImageURL'],
-      double.parse(productJson['Price'].toString()),
+      productJson['id'],
+      productJson['name'],
+      productJson['description'],
+      productJson['image_url'],
+      double.parse(productJson['price'].toString()),
       false
   );
 }
 
 dynamic serializeProduct(ProductModel product) {
   return {
-    'ID': null,
-    'Name': product.title,
-    'Description': product.subtitle,
-    'ImageURL': product.imageUri,
-    'Price': product.price
+    'id': null,
+    'name': product.title,
+    'description': product.subtitle,
+    'imageURL': product.imageUri,
+    'price': product.price
   };
 }
-
-// ProductModel serialize(dynamic productJson) {
-//   return ProductModel(
-//       productJson['ID'],
-//       productJson['Name'],
-//       productJson['Description'],
-//       productJson['ImageURL'],
-//       double.parse(productJson['Price'].toString()),
-//       false
-//   );
-// }
 
 List<ProductModel> sharedProducts = [];

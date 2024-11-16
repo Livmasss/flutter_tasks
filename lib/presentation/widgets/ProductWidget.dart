@@ -42,7 +42,7 @@ class ProductWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                  "${product.price}₽",
+                  "${product.price} \$",
                 style: const TextStyle(
                   color: Colors.blueAccent,
                   fontWeight: FontWeight.w700
