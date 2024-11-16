@@ -80,18 +80,6 @@ class _MainScreenState extends State<MainScreen> {
                                   })
                               );
                                 setState(() {
-                                  try {
-                                    var shopIndex = initialShoppingCartData.indexWhere((element) => element.id == newProduct.id);
-                                    initialShoppingCartData[shopIndex] = ShopCartItemModel(
-                                        newProduct.id,
-                                        newProduct.title,
-                                        newProduct.subtitle,
-                                        newProduct.imageUri,
-                                        newProduct.price,
-                                        1
-                                    );
-                                  }
-                                  catch(e) {};
                                   sharedProducts[index] = newProduct;
                                 });
                             },

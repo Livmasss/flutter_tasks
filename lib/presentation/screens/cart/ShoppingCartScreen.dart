@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/CartService.dart';
 import 'package:flutter_task3/data/ProductsData.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ShopCartItem.dart';
 
-import '../../../data/ShoppingCartData.dart';
 import 'BottomBar.dart';
 
 class ShoppingCartScreen extends StatefulWidget {
@@ -16,7 +16,18 @@ class ShoppingCartScreen extends StatefulWidget {
 }
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
-  List<ShopCartItemModel> items = initialShoppingCartData;
+  List<ShopCartItemModel> items = [];
+
+  @override
+  void initState() {
+    super.initState();
+      var futureCarts = getCart();
+      futureCarts.then((value) => {
+      setState(() {
+        items.addAll(value);
+      })
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +70,6 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                                     onEdited(newProduct);
 
                                     setState(() {
-                                      try {
-                                        var shopIndex = initialShoppingCartData.indexWhere((element) => element.id == newProduct.id);
-                                        initialShoppingCartData[shopIndex] = ShopCartItemModel(
-                                            newProduct.id,
-                                            newProduct.title,
-                                            newProduct.subtitle,
-                                            newProduct.imageUri,
-                                            newProduct.price,
-                                            1
-                                        );
-                                      }
-                                      catch(e) {};
                                       sharedProducts[index] = newProduct;
                                     });
                                   },
