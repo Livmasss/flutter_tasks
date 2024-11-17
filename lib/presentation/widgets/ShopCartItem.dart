@@ -34,6 +34,7 @@ class ShopCartItem extends StatelessWidget {
               SlidableAction(
                 onPressed: (context) {
                   deleteItem();
+                  deleteCartItem(item);
                 },
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
@@ -52,23 +53,24 @@ class ShopCartItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             title: Text(item.title),
-            subtitle: Text("${item.cost}₽"),
+            subtitle: Text("${item.cost} \$"),
             trailing: CartItemCountChanger(
               count: item.count,
               onIncreasePressed: () {
                 onCountChanged(item.count + 1);
                 if (item.id != null) {
-                  increaseCount(item.id!);
+                  increaseCartItemCount(item.id!);
                 }
               },
               onDecreasePressed: () {
                 if (item.count == 1) {
                   deleteItem();
+                  deleteCartItem(item);
                 }
                 else {
                   onCountChanged(item.count - 1);
                   if (item.id != null) {
-                    decreaseCount(item.id!);
+                    decreaseCartItemCount(item.id!);
                   }
                 }
               },

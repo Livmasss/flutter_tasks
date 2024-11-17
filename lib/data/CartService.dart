@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_task3/data/UserService.dart';
+import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
 import '../presentation/models/ShopCartItemModel.dart';
 import 'dio_config.dart';
@@ -23,7 +24,23 @@ Future<List<ShopCartItemModel>> getCart() async {
   return list;
 }
 
-void decreaseCount(int productId) async {
+void deleteProductFromCart(ProductModel product) async {
+  var userId = getUserId();
+
+  await getHttpClient().delete(
+      "/cart/$userId/${product.id}"
+  );
+}
+
+void deleteCartItem(ShopCartItemModel model) async {
+  var userId = getUserId();
+
+  await getHttpClient().delete(
+      "/cart/$userId/${model.id}"
+  );
+}
+
+void decreaseCartItemCount(int productId) async {
   var userId = getUserId();
 
   var request = {
@@ -37,7 +54,7 @@ void decreaseCount(int productId) async {
   );
 }
 
-void increaseCount(int productId) async {
+void increaseCartItemCount(int productId) async {
   var userId = getUserId();
 
   var request = {

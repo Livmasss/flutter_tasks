@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/CartService.dart';
-import 'package:flutter_task3/data/ShoppingCartData.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
@@ -44,12 +43,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
-                          initialShoppingCartData.removeWhere((element) => element.id == product.id);
+                          deleteProductFromCart(product);
                           sharedProducts.remove(product);
                         });
                       },
                         onInCartPressed: () {
-                          increaseCount(product.id);
+                          increaseCartItemCount(product.id);
                       },
                         onLikeClicked: () {
                           setState(() {

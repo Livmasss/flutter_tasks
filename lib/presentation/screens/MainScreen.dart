@@ -6,7 +6,6 @@ import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dar
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
 
-import '../../data/ShoppingCartData.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -51,11 +50,11 @@ class _MainScreenState extends State<MainScreen> {
                       onDeleteClicked: () {
                         setState(() {
                           products.remove(product);
-                          initialShoppingCartData.removeWhere((element) => element.id == product.id);
+                          deleteProductFromCart(product);
                           sharedProducts.remove(product);
                         });
                       }, onInCartPressed: () {
-                        increaseCount(product.id);
+                        increaseCartItemCount(product.id);
                       }, onLikeClicked: () {
                         setState(() {
                           product.isFavorite = !product.isFavorite;

@@ -53,6 +53,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                           onDeleteClicked: () {
                             setState(() {
                               items.remove(item);
+                              deleteCartItem(item);
                               sharedProducts.removeWhere((element) => element.id == item.id);
                             });
                             },
