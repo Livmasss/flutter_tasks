@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/favorite_service.dart';
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
 class ProductWidget extends StatelessWidget {
@@ -35,6 +36,14 @@ class ProductWidget extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                       onPressed: () {
+                        if (product.id != null) {
+                          if (product.isFavorite) {
+                            unlikeProduct(product.id!);
+                          }
+                          else {
+                            likeProduct(product.id!);
+                          }
+                        }
                         onLikeClicked();
                       },
                       icon: Icon(product.getFavoriteIconData())

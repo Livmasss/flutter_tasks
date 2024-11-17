@@ -55,10 +55,6 @@ class _MainScreenState extends State<MainScreen> {
                         });
                       }, onInCartPressed: () {
                         increaseCartItemCount(product.id);
-                      }, onLikeClicked: () {
-                        setState(() {
-                          product.isFavorite = !product.isFavorite;
-                        });
                       },
                       onEditPressed: (onEdited) {
                         Navigator.push(context, MaterialPageRoute(

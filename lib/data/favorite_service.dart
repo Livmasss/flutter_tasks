@@ -20,3 +20,20 @@ Future<List<ProductModel>> getFavorites() async {
 
   return list;
 }
+
+void unlikeProduct(int productId) async {
+  var userId = getUserId();
+  await getHttpClient().delete(
+      "/favorites/$userId/$productId"
+  );
+}
+
+void likeProduct(int productId) async {
+  var userId = getUserId();
+  await getHttpClient().post(
+      "/favorites/$userId",
+    data: {
+      'product_id': productId
+    }
+  );
+}

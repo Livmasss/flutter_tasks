@@ -58,12 +58,6 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                             });
                             },
                           onInCartPressed: () {},
-                          onLikeClicked: () {
-                            setState(() {
-                              var product = sharedProducts.firstWhere((element) => element.id == item.id);
-                              product.isFavorite = !product.isFavorite;
-                            });
-                            },
                           onEditPressed: (onEdited) {
                             Navigator.push(context, MaterialPageRoute(
                                 builder: (context) => EditProductScreen(

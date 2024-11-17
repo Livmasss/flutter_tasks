@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
 
+import '../../../data/favorite_service.dart';
 import '../../../data/products_service.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   ProductModel product;
   final VoidCallback onDeleteClicked;
   final VoidCallback onInCartPressed;
-  final VoidCallback onLikeClicked;
   final ValueChanged<ValueChanged<ProductModel>> onEditPressed;
 
   ProductDetailScreen({
@@ -15,7 +15,6 @@ class ProductDetailScreen extends StatefulWidget {
     required this.product,
     required this.onDeleteClicked,
     required this.onInCartPressed,
-    required this.onLikeClicked,
     required this.onEditPressed,
   });
 
@@ -24,15 +23,23 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  late ProductModel product;
+
+  @override
+  void initState() {
+    product = widget.product;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final ValueChanged<ProductModel> onProductEdited = (newProduct) => setState(() {
-      widget.product = newProduct;
+      product = newProduct;
     });
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.product.title),
+        title: Text(product.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -44,21 +51,21 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   children: [
                     Image.network(
-                      widget.product.imageUri,
+                      product.imageUri,
                     ),
                     const SizedBox(height: 16.0),
                     Text(
-                      widget.product.title,
+                      product.title,
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
                     Text(
-                      "${widget.product.price} \$",
+                      "${product.price} \$",
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                      widget.product.subtitle,
+                      product.subtitle,
                       style: const TextStyle(fontSize: 16),
                     ),
                   ],
@@ -70,9 +77,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               children: [
                 IconButton(
                     onPressed: () {
-                      widget.onLikeClicked();
+                      setState(() {
+                        product.isFavorite = !product.isFavorite;
+                      });
+
+                      if (product.id == null) {
+                        return;
+                      }
+
+                      if (product.isFavorite) {
+                        unlikeProduct(product.id!);
+                      }
+                      else {
+                        likeProduct(product.id!);
+                      }
                     },
-                    icon: Icon(widget.product.getFavoriteIconData())
+                    icon: Icon(product.getFavoriteIconData())
                 ),
                 const SizedBox(
                   width: 8,

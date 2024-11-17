@@ -45,20 +45,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       builder: (context) => ProductDetailScreen(
                         product: product,
                         onDeleteClicked: () {
-                        setState(() {
-                          products.remove(product);
                           deleteProductFromCart(product);
-                          sharedProducts.remove(product);
-                        });
+                          setState(() {
+                            products.remove(product);
+                            sharedProducts.remove(product);
+                          });
                       },
                         onInCartPressed: () {
                           increaseCartItemCount(product.id);
                       },
-                        onLikeClicked: () {
-                          setState(() {
-                            product.isFavorite = !product.isFavorite;
-                          });
-                        },
                         onEditPressed: (onEdited) {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (context) => EditProductScreen(
