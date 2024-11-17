@@ -77,19 +77,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               children: [
                 IconButton(
                     onPressed: () {
+                      if (product.isFavorite) {
+                        unlikeProduct(product.id!);
+                      }
+                      else {
+                        likeProduct(product.id!);
+                      }
+
                       setState(() {
                         product.isFavorite = !product.isFavorite;
                       });
 
                       if (product.id == null) {
                         return;
-                      }
-
-                      if (product.isFavorite) {
-                        unlikeProduct(product.id!);
-                      }
-                      else {
-                        likeProduct(product.id!);
                       }
                     },
                     icon: Icon(product.getFavoriteIconData())

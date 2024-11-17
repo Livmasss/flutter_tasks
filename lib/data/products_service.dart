@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_task3/data/UserService.dart';
+
 import 'dio_config.dart';
 
 import 'package:flutter_task3/presentation/models/ProductModel.dart';
@@ -14,8 +16,9 @@ Future<List<ProductModel>> getProducts() async {
 }
 
 Future<List<ProductModel>> initializeProducts() async {
+  var userId = getUserId();
   var response = await getHttpClient().get(
-      "/products"
+      "/products/$userId"
   );
   var products = jsonDecode(response.data);
   List<ProductModel> list = [];
@@ -56,7 +59,7 @@ ProductModel deserializeProduct(dynamic productJson) {
       productJson['description'],
       productJson['image_url'],
       double.parse(productJson['price'].toString()),
-      false
+      bool.parse(productJson['is_favorite'].toString())
   );
 }
 
