@@ -10,8 +10,12 @@ Future<List<ProductModel>> getProducts() async {
     return sharedProducts;
   }
 
+  return initializeProducts();
+}
+
+Future<List<ProductModel>> initializeProducts() async {
   var response = await getHttpClient().get(
-    "/products"
+      "/products"
   );
   var products = jsonDecode(response.data);
   List<ProductModel> list = [];
@@ -22,7 +26,7 @@ Future<List<ProductModel>> getProducts() async {
   }
 
   sharedProducts = list;
-  return list;
+  return sharedProducts;
 }
 
 void createProduct(ProductModel product) async {
@@ -61,7 +65,7 @@ dynamic serializeProduct(ProductModel product) {
     'product_id': null,
     'name': product.title,
     'description': product.subtitle,
-    'imageURL': product.imageUri,
+    'image_url': product.imageUri,
     'price': product.price
   };
 }

@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    var futureProducts = getProducts();
+    var futureProducts = initializeProducts();
     futureProducts.then((value) => {
       setState(() {
         products.addAll(value);
