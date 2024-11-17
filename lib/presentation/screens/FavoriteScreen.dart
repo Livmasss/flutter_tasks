@@ -3,6 +3,7 @@ import 'package:flutter_task3/data/CartService.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
+import '../../data/favorite_service.dart';
 import '../../data/products_service.dart';
 import '../widgets/ProductWidget.dart';
 
@@ -19,7 +20,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
     super.initState();
-    products.addAll(sharedProducts.where((element) => element.isFavorite));
+
+    getFavorites().then((value) => setState(() {
+      products = value;
+    }));
   }
 
   @override

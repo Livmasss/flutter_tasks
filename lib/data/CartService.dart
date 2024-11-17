@@ -8,7 +8,6 @@ import 'dio_config.dart';
 
 Future<List<ShopCartItemModel>> getCart() async {
   var userId = getUserId();
-
   var response = await getHttpClient().get(
       "/cart/$userId"
   );
