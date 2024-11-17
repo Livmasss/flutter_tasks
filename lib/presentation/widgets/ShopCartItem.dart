@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/CartService.dart';
 
 import '../models/ShopCartItemModel.dart';
 import '../screens/cart/CartItemCountChanger.dart';
@@ -56,6 +57,9 @@ class ShopCartItem extends StatelessWidget {
               count: item.count,
               onIncreasePressed: () {
                 onCountChanged(item.count + 1);
+                if (item.id != null) {
+                  increaseCount(item.id!);
+                }
               },
               onDecreasePressed: () {
                 if (item.count == 1) {
@@ -63,6 +67,9 @@ class ShopCartItem extends StatelessWidget {
                 }
                 else {
                   onCountChanged(item.count - 1);
+                  if (item.id != null) {
+                    decreaseCount(item.id!);
+                  }
                 }
               },
             ),

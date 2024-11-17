@@ -5,8 +5,6 @@ import 'package:flutter_task3/data/UserService.dart';
 import '../presentation/models/ShopCartItemModel.dart';
 import 'dio_config.dart';
 
-List<ShopCartItemModel> initialShoppingCartData = [];
-
 Future<List<ShopCartItemModel>> getCart() async {
   var userId = getUserId();
 
@@ -18,14 +16,42 @@ Future<List<ShopCartItemModel>> getCart() async {
   List<ShopCartItemModel> list = [];
 
   for (var cartItem in cartItems) {
-    var deserialized = deserializeProduct(cartItem);
+    var deserialized = deserializeCartItem(cartItem);
     list.add(deserialized);
   }
 
   return list;
 }
 
-ShopCartItemModel deserializeProduct(dynamic productJson) {
+void decreaseCount(int productId) async {
+  var userId = getUserId();
+
+  var request = {
+    'product_id': productId,
+    'quantity': 1
+  };
+
+  await getHttpClient().put(
+      "/cart/$userId",
+      data: request
+  );
+}
+
+void increaseCount(int productId) async {
+  var userId = getUserId();
+
+  var request = {
+    'product_id': productId,
+    'quantity': 1
+  };
+
+  await getHttpClient().post(
+      "/cart/$userId",
+      data: request
+  );
+}
+
+ShopCartItemModel deserializeCartItem(dynamic productJson) {
   return ShopCartItemModel(
       productJson['product_id'],
       productJson['name'],

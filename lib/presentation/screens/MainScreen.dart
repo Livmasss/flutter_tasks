@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/ProductsData.dart';
+import 'package:flutter_task3/data/CartService.dart';
+import 'package:flutter_task3/data/products_service.dart';
 import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
 
 import '../../data/ShoppingCartData.dart';
-import '../models/ShopCartItemModel.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -55,14 +55,7 @@ class _MainScreenState extends State<MainScreen> {
                           sharedProducts.remove(product);
                         });
                       }, onInCartPressed: () {
-                      initialShoppingCartData.add(ShopCartItemModel(
-                          product.id,
-                          product.title,
-                          product.subtitle,
-                          product.imageUri,
-                          product.price,
-                          1
-                      ));
+                        increaseCount(product.id);
                       }, onLikeClicked: () {
                         setState(() {
                           product.isFavorite = !product.isFavorite;

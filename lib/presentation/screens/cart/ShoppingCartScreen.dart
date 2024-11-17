@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/CartService.dart';
-import 'package:flutter_task3/data/ProductsData.dart';
+import 'package:flutter_task3/data/products_service.dart';
 import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/CartService.dart';
 import 'package:flutter_task3/data/ShoppingCartData.dart';
-import 'package:flutter_task3/presentation/models/ShopCartItemModel.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
 
-import '../../data/ProductsData.dart';
+import '../../data/products_service.dart';
 import '../widgets/ProductWidget.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -49,14 +49,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         });
                       },
                         onInCartPressed: () {
-                          initialShoppingCartData.add(ShopCartItemModel(
-                            product.id,
-                            product.title,
-                            product.subtitle,
-                            product.imageUri,
-                            product.cost,
-                            1
-                        ));
+                          increaseCount(product.id);
                       },
                         onLikeClicked: () {
                           setState(() {
