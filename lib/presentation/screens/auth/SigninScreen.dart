@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/UserService.dart';
+import 'package:flutter_task3/presentation/screens/MainRouter.dart';
 import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -31,7 +33,7 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               const SizedBox(height: 8.0),
               MyTextFieldWidget(
-                initialValue: email,
+                initialValue: password,
                 onChanged: (value) {
                   setState(() {
                     password = value;
@@ -41,7 +43,21 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               const SizedBox(height: 24.0),
               ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    try {
+                      signin(email, password);
+                    }
+                    catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Что-то пошло не так!')),
+                      );
+                    }
+                    finally {
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                          builder: (context) => const MainRouter()
+                      ));
+                    }
+                  },
                   child: const Text(
                       "Войти"
                   )

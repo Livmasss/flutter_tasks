@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/UserService.dart';
 import 'package:flutter_task3/presentation/models/ProfileModel.dart';
 import 'package:flutter_task3/presentation/screens/MainRouter.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_task3/presentation/screens/auth/SigninScreen.dart';
 
 import '../../widgets/MyTextFieldWidget.dart';
 
@@ -14,7 +14,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  final SupabaseClient supabase = Supabase.instance.client;
   var email = "";
   var password = "";
   var phoneNumber = "";
@@ -67,10 +66,30 @@ class _SignupScreenState extends State<SignupScreen> {
 
           const SizedBox(height: 24.0),
 
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const SigninScreen())
+              );
+            },
+              child: const Text("Уже есть аккаунт")
+          ),
+
           OutlinedButton(
               onPressed: () {
                 debugPrint("OutlinedButton pressed");
-                signup();
+                try {
+                  signup(
+                      password,
+                      ProfileModel(name, "", 0, phoneNumber, email),
+                      signupCallback
+                  );
+                }
+                catch(e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Что-то пошло не так!')),
+                  );
+                }
               },
               child: const Text("Создать аккаунт")
           ),
@@ -79,32 +98,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  void signupCallback(AuthResponse response, ProfileModel profile) {
-    var user = response.user;
+  void signupCallback() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Регистрация успешна!')),
-    );
-    setUserId(
-        user?.id,
-        profile
+      const SnackBar(content: Text('Вы зарегистрированы')),
     );
 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const MainRouter()),
     );
-  }
-
-  void signup() {
-    debugPrint("Signup");
-    supabase.auth.signUp(
-        email: email,
-        password: password
-    ).then((response) => {
-      signupCallback(
-          response,
-          ProfileModel(name, "", 0, phoneNumber, email)
-      )
-    });
   }
 }
