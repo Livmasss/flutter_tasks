@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/UserService.dart';
 import 'package:flutter_task3/presentation/screens/MainRouter.dart';
+import 'package:flutter_task3/presentation/screens/auth/SignupScreen.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+      url: 'https://ijymxlmgppyfwewmvzlp.supabase.co',
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqeW14bG1ncHB5Zndld212emxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1NDcyNTEsImV4cCI6MjA0ODEyMzI1MX0.R7oYHuUTaxFmIevSisoldrYft3_h4wQrFGhF3DSlc2E'
+  );
+
   runApp(const MyApp());
 }
 
@@ -17,7 +27,18 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainRouter()
+      home: Container(
+        child: getSignupOrMain(),
+      )
     );
+  }
+}
+
+Widget getSignupOrMain() {
+  if (getUserId() == null) {
+    return const SignupScreen();
+  }
+  else {
+    return const MainRouter();
   }
 }

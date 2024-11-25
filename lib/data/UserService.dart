@@ -1,3 +1,3 @@
-int getUserId() {
-  return 1;
+String? getUserId() {
+  return null;
 }
