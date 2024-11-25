@@ -3,7 +3,7 @@ import 'package:flutter_task3/data/dio_config.dart';
 import 'package:flutter_task3/presentation/models/ProfileModel.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-String? userId = "d28c8b67-15e8-4f49-9a19-47d280f702a1";
+String? userId = "953ee85b-f837-4fd1-8183-c1614434b554";
 final SupabaseClient supabase = Supabase.instance.client;
 
 

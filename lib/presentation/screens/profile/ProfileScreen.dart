@@ -12,7 +12,16 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  var profile = profileModel;
+
+  @override
+  void initState() {
+      getProfile().then((value) => setState(() {
+        profile = value;
+      }));
+
+    super.initState();
+  }
+  ProfileModel profile = profileModel;
 
   @override
   Widget build(BuildContext context) {
