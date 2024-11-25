@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/UserService.dart';
+import 'package:flutter_task3/presentation/models/ProfileModel.dart';
 import 'package:flutter_task3/presentation/screens/MainRouter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -15,6 +17,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final SupabaseClient supabase = Supabase.instance.client;
   var email = "";
   var password = "";
+  var phoneNumber = "";
+  var name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 email = value;
               });
             },
-            hintText: "Username",
+            hintText: "Email",
           ),
           const SizedBox(height: 8.0),
           MyTextFieldWidget(
@@ -38,7 +42,27 @@ class _SignupScreenState extends State<SignupScreen> {
                 password = value;
               });
             },
+            hintText: "Password",
+          ),
+          const SizedBox(height: 8.0),
+          MyTextFieldWidget(
+            initialValue: name,
+            onChanged: (value) {
+              setState(() {
+                name = value;
+              });
+            },
             hintText: "Username",
+          ),
+          const SizedBox(height: 8.0),
+          MyTextFieldWidget(
+            initialValue: phoneNumber,
+            onChanged: (value) {
+              setState(() {
+                phoneNumber = value;
+              });
+            },
+            hintText: "Phone number",
           ),
 
           const SizedBox(height: 24.0),
@@ -55,13 +79,15 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  void signupCallback(AuthResponse response) {
+  void signupCallback(AuthResponse response, ProfileModel profile) {
     var user = response.user;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Регистрация успешна!')),
     );
-
-
+    setUserId(
+        user?.id,
+        profile
+    );
 
     Navigator.pushReplacement(
       context,
@@ -72,15 +98,13 @@ class _SignupScreenState extends State<SignupScreen> {
   void signup() {
     debugPrint("Signup");
     supabase.auth.signUp(
-        email: "Email@mail.com",
-        password: "CoolMireaLivmas4"
+        email: email,
+        password: password
     ).then((response) => {
-      signupCallback(response)
+      signupCallback(
+          response,
+          ProfileModel(name, "", 0, phoneNumber, email)
+      )
     });
-    // catch (e) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text('Что-то пошло не так: $e')),
-    //   );
-    // }
   }
 }
