@@ -12,3 +12,7 @@
 
 Описание работы<br>
 [Демонстрация работы приложения](..%2F..%2F..%2FVideos%2FScreen%20Recordings%2FScreen%20Recording%202024-11-26%20100655.mp4)
+
+![изображение](https://github.com/user-attachments/assets/06f7bc32-b6ad-4432-a720-b516b7533887)
+![изображение](https://github.com/user-attachments/assets/ea3bc244-9efd-4675-994d-a36e60794b20)
+![изображение](https://github.com/user-attachments/assets/335c682a-6b8f-4e67-b5ed-3004c538726c)
