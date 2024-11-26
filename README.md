@@ -11,8 +11,13 @@
 - Просмотр профиля (через API)
 
 Описание работы<br>
-[Демонстрация работы приложения](..%2F..%2F..%2FVideos%2FScreen%20Recordings%2FScreen%20Recording%202024-11-26%20100655.mp4)
 
+Регистрация:
 ![изображение](https://github.com/user-attachments/assets/06f7bc32-b6ad-4432-a720-b516b7533887)
 ![изображение](https://github.com/user-attachments/assets/ea3bc244-9efd-4675-994d-a36e60794b20)
 ![изображение](https://github.com/user-attachments/assets/335c682a-6b8f-4e67-b5ed-3004c538726c)
+
+Авторизация:
+![изображение](https://github.com/user-attachments/assets/855caa82-208a-4d33-8adf-a3b9bb0c1542)
+![изображение](https://github.com/user-attachments/assets/2e70101c-dc88-44e6-8cf4-f554c98c6bb7)
+![изображение](https://github.com/user-attachments/assets/f327411c-52c8-4b84-bf2b-6bc0ac89cb0b)
