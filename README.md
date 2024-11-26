@@ -19,5 +19,4 @@
 
 Авторизация:
 ![изображение](https://github.com/user-attachments/assets/855caa82-208a-4d33-8adf-a3b9bb0c1542)
-![изображение](https://github.com/user-attachments/assets/2e70101c-dc88-44e6-8cf4-f554c98c6bb7)
 ![изображение](https://github.com/user-attachments/assets/f327411c-52c8-4b84-bf2b-6bc0ac89cb0b)
