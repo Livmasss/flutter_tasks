@@ -21,79 +21,81 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          MyTextFieldWidget(
-            initialValue: email,
-            onChanged: (value) {
-              setState(() {
-                email = value;
-              });
-            },
-            hintText: "Email",
-          ),
-          const SizedBox(height: 8.0),
-          MyTextFieldWidget(
-            initialValue: password,
-            onChanged: (value) {
-              setState(() {
-                password = value;
-              });
-            },
-            hintText: "Password",
-          ),
-          const SizedBox(height: 8.0),
-          MyTextFieldWidget(
-            initialValue: name,
-            onChanged: (value) {
-              setState(() {
-                name = value;
-              });
-            },
-            hintText: "Username",
-          ),
-          const SizedBox(height: 8.0),
-          MyTextFieldWidget(
-            initialValue: phoneNumber,
-            onChanged: (value) {
-              setState(() {
-                phoneNumber = value;
-              });
-            },
-            hintText: "Phone number",
-          ),
-
-          const SizedBox(height: 24.0),
-
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const SigninScreen())
-              );
-            },
-              child: const Text("Уже есть аккаунт")
-          ),
-
-          OutlinedButton(
-              onPressed: () {
-                debugPrint("OutlinedButton pressed");
-                try {
-                  signup(
-                      password,
-                      ProfileModel(name, "", 0, phoneNumber, email),
-                      signupCallback
-                  );
-                }
-                catch(e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Что-то пошло не так!')),
-                  );
-                }
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            MyTextFieldWidget(
+              initialValue: email,
+              onChanged: (value) {
+                setState(() {
+                  email = value;
+                });
               },
-              child: const Text("Создать аккаунт")
-          ),
-        ],
+              hintText: "Email",
+            ),
+            const SizedBox(height: 8.0),
+            MyTextFieldWidget(
+              initialValue: password,
+              onChanged: (value) {
+                setState(() {
+                  password = value;
+                });
+              },
+              hintText: "Password",
+            ),
+            const SizedBox(height: 8.0),
+            MyTextFieldWidget(
+              initialValue: name,
+              onChanged: (value) {
+                setState(() {
+                  name = value;
+                });
+              },
+              hintText: "Username",
+            ),
+            const SizedBox(height: 8.0),
+            MyTextFieldWidget(
+              initialValue: phoneNumber,
+              onChanged: (value) {
+                setState(() {
+                  phoneNumber = value;
+                });
+              },
+              hintText: "Phone number",
+            ),
+
+            const SizedBox(height: 24.0),
+
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const SigninScreen())
+                  );
+                },
+                child: const Text("Уже есть аккаунт")
+            ),
+
+            OutlinedButton(
+                onPressed: () {
+                  debugPrint("OutlinedButton pressed");
+                  try {
+                    signup(
+                        password,
+                        ProfileModel(name, "", 0, phoneNumber, email),
+                        signupCallback
+                    );
+                  }
+                  catch(e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Что-то пошло не так!')),
+                    );
+                  }
+                },
+                child: const Text("Создать аккаунт")
+            ),
+          ],
+        ),
       ),
     );
   }

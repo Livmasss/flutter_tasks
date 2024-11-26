@@ -17,6 +17,8 @@ void signup(String password, ProfileModel profile, VoidCallback callback) async 
         password: password
     );
 
+    userId = result.user?.id;
+
     await getHttpClient().post(
           "/users",
           data: {

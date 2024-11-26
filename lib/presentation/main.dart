@@ -35,10 +35,5 @@ class MyApp extends StatelessWidget {
 }
 
 Widget getSignupOrMain() {
-  if (getUserId() == null) {
-    return const SignupScreen();
-  }
-  else {
-    return const MainRouter();
-  }
+  return const SignupScreen();
 }
