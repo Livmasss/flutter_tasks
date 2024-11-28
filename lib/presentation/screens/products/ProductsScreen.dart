@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/CartService.dart';
 import 'package:flutter_task3/data/products_service.dart';
+import 'package:flutter_task3/presentation/models/ProductModel.dart';
 import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
@@ -19,8 +20,12 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
-  var products = [];
+  List<ProductModel> products = [];
+  List<ProductModel> allProducts = [];
   var searchQuery = "";
+
+  double minPrice = 0.0;
+  double maxPrice = double.infinity;
 
   @override
   void initState() {
@@ -29,6 +34,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     futureProducts.then((value) => {
       setState(() {
         products.addAll(value);
+        allProducts = value;
       })
     });
   }
@@ -63,9 +69,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       ),
                     ),
                     IconButton.filled(
-                        onPressed: () {
-                          filterProductsDialogBuilder(context);
-                        },
+                        onPressed: openFilterDialog,
                         icon: const Icon(Icons.filter_alt)
                     ),
                   ],
@@ -92,7 +96,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       sharedProducts.remove(product);
                                     });
                                   }, onInCartPressed: () {
-                                  increaseCartItemCount(product.id);
+                                  increaseCartItemCount(product.id!);
                                 },
                                   onEditPressed: (onEdited) {
                                     Navigator.push(context, MaterialPageRoute(
@@ -147,5 +151,30 @@ class _ProductsScreenState extends State<ProductsScreen> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+  void openFilterDialog() async {
+    final result = await filterProductsDialogBuilder(
+      context,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+    );
+
+    if (result.isNotEmpty) {
+      minPrice = result["minPrice"]!;
+      maxPrice = result["maxPrice"]!;
+
+      setState(() {
+        products = filterProducts(searchQuery, minPrice, maxPrice);
+      });
+    }
+  }
+
+  List<ProductModel> filterProducts(String query, double minPrice, double maxPrice) {
+    return allProducts.where((product) {
+      bool priceMatches = product.price >= minPrice && product.price <= maxPrice;
+      bool searchMatches = product.title.toLowerCase().contains(query.toLowerCase()) ||
+          product.subtitle.toLowerCase().contains(query.toLowerCase());
+      return priceMatches && searchMatches;
+    }).toList();
   }
 }

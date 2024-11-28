@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/presentation/widgets/MyNumericFieldWidget.dart';
 
-Future<void> filterProductsDialogBuilder(BuildContext context) {
-  return showDialog<void>(
+Future<Map<String, double>> filterProductsDialogBuilder(
+    BuildContext context, {
+      required double minPrice,
+      required double maxPrice
+    }) async {
+
+  return await showDialog<Map<String, double>>(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Выберете фильтры'),
-        content: const Text(
-          'A dialog is a type of modal window that\n'
-              'appears in front of app content to\n'
-              'provide critical information, or prompt\n'
-              'for a decision to be made.',
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MyNumericFieldWidget(
+              initialValue: minPrice,
+              onChanged: (value) => minPrice = double.parse(value),
+              hintText: "Минимальная цена"
+            ),
+            const SizedBox(height: 8,),
+            MyNumericFieldWidget(
+                initialValue: maxPrice,
+                onChanged: (value) => maxPrice = double.parse(value),
+                hintText: "Максимальная цена"
+            ),
+          ],
         ),
         actions: <Widget>[
           TextButton(
@@ -28,11 +44,14 @@ Future<void> filterProductsDialogBuilder(BuildContext context) {
             ),
             child: const Text('Подтвердить'),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context, {
+                "minPrice": minPrice,
+                "maxPrice": maxPrice,
+              });
             },
           ),
         ],
       );
     },
-  );
+  ) ?? <String, double>{};
 }
