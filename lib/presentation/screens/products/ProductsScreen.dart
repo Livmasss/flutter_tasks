@@ -4,8 +4,11 @@ import 'package:flutter_task3/data/products_service.dart';
 import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
 import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
+import 'package:flutter_task3/presentation/screens/products/SortProductsDialog.dart';
 import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
 import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
+
+import 'FilterProductsDialog.dart';
 
 
 class ProductsScreen extends StatefulWidget {
@@ -44,7 +47,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     children: [
                       IconButton.filled(
                           onPressed: () {
-
+                            sortProductsDialogBuilder(context);
                           },
                           icon: const Icon(Icons.sort)
                       ),
@@ -61,7 +64,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     ),
                     IconButton.filled(
                         onPressed: () {
-
+                          filterProductsDialogBuilder(context);
                         },
                         icon: const Icon(Icons.filter_alt)
                     ),

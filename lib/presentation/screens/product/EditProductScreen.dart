@@ -34,49 +34,51 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          MyTextFieldWidget(
-            onChanged: (text) {productModel.title = text;},
-            hintText: "Название",
-            initialValue: productModel.title,
-          ),
-          MyTextFieldWidget(
-            onChanged: (text) { productModel.subtitle = text; },
-            hintText: "Описание",
-            initialValue: productModel.subtitle,
-          ),
-          MyNumericFieldWidget(
-            onChanged: (text) {
-              try {
-                productModel.price = double.parse(text);
-              }
-              catch(e) {
-                productModel.price = 0;
-              }
-            },
-            hintText: "Стоимость",
-            initialValue: productModel.price,
-          ),
-          MyTextFieldWidget(
-            onChanged: (text) { productModel.imageUri = text; },
-            hintText: "Ссылка на изображение",
-            initialValue: productModel.imageUri,
-          ),
+    return SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              MyTextFieldWidget(
+                onChanged: (text) {productModel.title = text;},
+                hintText: "Название",
+                initialValue: productModel.title,
+              ),
+              MyTextFieldWidget(
+                onChanged: (text) { productModel.subtitle = text; },
+                hintText: "Описание",
+                initialValue: productModel.subtitle,
+              ),
+              MyNumericFieldWidget(
+                onChanged: (text) {
+                  try {
+                    productModel.price = double.parse(text);
+                  }
+                  catch(e) {
+                    productModel.price = 0;
+                  }
+                },
+                hintText: "Стоимость",
+                initialValue: productModel.price,
+              ),
+              MyTextFieldWidget(
+                onChanged: (text) { productModel.imageUri = text; },
+                hintText: "Ссылка на изображение",
+                initialValue: productModel.imageUri,
+              ),
 
-          const Spacer(),
-          OutlinedButton(
-              onPressed: () {
-                updateProduct(productModel);
-                onProductEdited(productModel);
+              const Spacer(),
+              OutlinedButton(
+                  onPressed: () {
+                    updateProduct(productModel);
+                    onProductEdited(productModel);
 
-                Navigator.pop(context);
-              },
-              child: const Text("Подтвердить")
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Подтвердить")
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
     );
   }
 }
