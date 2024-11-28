@@ -22,7 +22,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   List<ProductModel> products = [];
   List<ProductModel> allProducts = [];
-  var searchQuery = "";
+  String searchQuery = "";
 
   double minPrice = 0.0;
   double maxPrice = double.infinity;
@@ -78,23 +78,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         ],
                       ),
                       Expanded(
-                        child: MyTextFieldWidget(
-                        initialValue: searchQuery,
-                        onChanged: (value) {
-                          setState(() {
-                            searchQuery = value;
-                          });
-                        },
-                        hintText: "Поиск...",
+                        child:
+                        MyTextFieldWidget(
+                          initialValue: searchQuery,
+                          onChanged: (value) {
+                            setState(() {
+                              searchQuery = value;
+                              products = filterProducts();
+                            });
+                          },
+                          hintText: "Поиск...",
+                        ),
                       ),
-                    ),
-                    IconButton(
+                      IconButton(
                         onPressed: openFilterDialog,
                         icon: const Icon(Icons.filter_alt)
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
                 Expanded(
                     child: GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -184,16 +186,16 @@ class _ProductsScreenState extends State<ProductsScreen> {
       maxPrice = result["maxPrice"]!;
 
       setState(() {
-        products = filterProducts(searchQuery, minPrice, maxPrice);
+        products = filterProducts();
       });
     }
   }
 
-  List<ProductModel> filterProducts(String query, double minPrice, double maxPrice) {
+  List<ProductModel> filterProducts() {
     return allProducts.where((product) {
       bool priceMatches = product.price >= minPrice && product.price <= maxPrice;
-      bool searchMatches = product.title.toLowerCase().contains(query.toLowerCase()) ||
-          product.subtitle.toLowerCase().contains(query.toLowerCase());
+      bool searchMatches = product.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
+          product.subtitle.toLowerCase().contains(searchQuery.toLowerCase());
       return priceMatches && searchMatches;
     }).toList();
   }
