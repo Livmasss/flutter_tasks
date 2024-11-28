@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/CartService.dart';
+import 'package:flutter_task3/data/cart_service.dart';
 
-import '../models/ShopCartItemModel.dart';
-import '../screens/cart/CartItemCountChanger.dart';
+import '../models/shop_cart_item_model.dart';
+import '../screens/cart/cart_item_count_controller.dart';
 
 import 'package:flutter_slidable/flutter_slidable.dart';
 

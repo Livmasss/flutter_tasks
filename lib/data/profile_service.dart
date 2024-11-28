@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import '../presentation/models/ProfileModel.dart';
-import 'UserService.dart';
+import '../presentation/models/profile_model.dart';
+import 'user_service.dart';
 import 'dio_config.dart';
 
 var profileModel = ProfileModel("Сейранян С.Г.", "Эфбо-01-22", 8, "+70000000000", "MyCoolEmail@pochta.com");

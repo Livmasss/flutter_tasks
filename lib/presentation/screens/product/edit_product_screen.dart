@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
-import 'package:flutter_task3/presentation/widgets/MyNumericFieldWidget.dart';
-import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
+import 'package:flutter_task3/presentation/widgets/numeric_field_widget.dart';
+import 'package:flutter_task3/presentation/widgets/text_field_widget.dart';
 
 import '../../../data/products_service.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_task3/data/dio_config.dart';
-import 'package:flutter_task3/presentation/models/ProfileModel.dart';
+import 'package:flutter_task3/presentation/models/profile_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 String? userId = "953ee85b-f837-4fd1-8183-c1614434b554";

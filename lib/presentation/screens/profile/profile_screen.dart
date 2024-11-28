@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/screens/profile/EditProfileScreen.dart';
+import 'package:flutter_task3/presentation/screens/profile/edit_profile_screen.dart';
 
 import '../../../data/profile_service.dart';
-import '../../models/ProfileModel.dart';
+import '../../models/profile_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

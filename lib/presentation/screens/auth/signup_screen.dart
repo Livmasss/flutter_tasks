@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/UserService.dart';
-import 'package:flutter_task3/presentation/models/ProfileModel.dart';
-import 'package:flutter_task3/presentation/screens/MainRouter.dart';
-import 'package:flutter_task3/presentation/screens/auth/SigninScreen.dart';
+import 'package:flutter_task3/data/user_service.dart';
+import 'package:flutter_task3/presentation/models/profile_model.dart';
+import 'package:flutter_task3/presentation/screens/main_router.dart';
+import 'package:flutter_task3/presentation/screens/auth/signin_screen.dart';
 
-import '../../widgets/MyTextFieldWidget.dart';
+import '../../widgets/text_field_widget.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

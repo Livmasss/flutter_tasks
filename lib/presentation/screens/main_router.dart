@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/screens/FavoriteScreen.dart';
-import 'package:flutter_task3/presentation/screens/products/ProductsScreen.dart';
-import 'package:flutter_task3/presentation/screens/cart/ShoppingCartScreen.dart';
-import 'package:flutter_task3/presentation/screens/profile/ProfileScreen.dart';
+import 'package:flutter_task3/presentation/screens/favorite_screen.dart';
+import 'package:flutter_task3/presentation/screens/products/products_screen.dart';
+import 'package:flutter_task3/presentation/screens/cart/shopping_cart_screen.dart';
+import 'package:flutter_task3/presentation/screens/profile/profile_screen.dart';
 
 class MainRouter extends StatefulWidget {
   const MainRouter({super.key});

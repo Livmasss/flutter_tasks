@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter_task3/data/UserService.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/data/user_service.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
 
-import '../presentation/models/ShopCartItemModel.dart';
+import '../presentation/models/shop_cart_item_model.dart';
 import 'dio_config.dart';
 
 Future<List<ShopCartItemModel>> getCart() async {

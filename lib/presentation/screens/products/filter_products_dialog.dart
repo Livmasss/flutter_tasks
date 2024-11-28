@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/widgets/MyNumericFieldWidget.dart';
+import 'package:flutter_task3/presentation/widgets/numeric_field_widget.dart';
 
 Future<Map<String, double>> filterProductsDialogBuilder(
     BuildContext context, {
@@ -52,6 +52,6 @@ Future<Map<String, double>> filterProductsDialogBuilder(
           ),
         ],
       );
-    },
+      },
   ) ?? <String, double>{};
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/CartService.dart';
-import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
-import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
+import 'package:flutter_task3/data/cart_service.dart';
+import 'package:flutter_task3/presentation/screens/product/edit_product_screen.dart';
+import 'package:flutter_task3/presentation/screens/product/product_details_screen.dart';
 
 import '../../data/favorite_service.dart';
 import '../../data/products_service.dart';
-import '../widgets/ProductWidget.dart';
+import '../widgets/product_widget.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});

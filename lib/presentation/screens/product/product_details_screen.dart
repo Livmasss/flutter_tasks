@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
 
 import '../../../data/favorite_service.dart';
 import '../../../data/products_service.dart';

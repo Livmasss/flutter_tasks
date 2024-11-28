@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/UserService.dart';
-import 'package:flutter_task3/presentation/screens/MainRouter.dart';
-import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
+import 'package:flutter_task3/data/user_service.dart';
+import 'package:flutter_task3/presentation/screens/main_router.dart';
+import 'package:flutter_task3/presentation/widgets/text_field_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SigninScreen extends StatefulWidget {

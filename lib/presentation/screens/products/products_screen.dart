@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/CartService.dart';
+import 'package:flutter_task3/data/cart_service.dart';
 import 'package:flutter_task3/data/products_service.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
-import 'package:flutter_task3/presentation/screens/product/CreateProductScreen.dart';
-import 'package:flutter_task3/presentation/screens/product/EditProductScreen.dart';
-import 'package:flutter_task3/presentation/screens/product/ProductDetailsScreen.dart';
-import 'package:flutter_task3/presentation/screens/products/SortProductsDialog.dart';
-import 'package:flutter_task3/presentation/widgets/MyTextFieldWidget.dart';
-import 'package:flutter_task3/presentation/widgets/ProductWidget.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
+import 'package:flutter_task3/presentation/screens/product/create_product_screen.dart';
+import 'package:flutter_task3/presentation/screens/product/edit_product_screen.dart';
+import 'package:flutter_task3/presentation/screens/product/product_details_screen.dart';
+import 'package:flutter_task3/presentation/screens/products/sort_types.dart';
+import 'package:flutter_task3/presentation/widgets/text_field_widget.dart';
+import 'package:flutter_task3/presentation/widgets/product_widget.dart';
 
-import 'FilterProductsDialog.dart';
+import 'filter_products_dialog.dart';
 
 
 class ProductsScreen extends StatefulWidget {
@@ -51,11 +51,31 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   height: 60,
                   child: Row(
                     children: [
-                      IconButton.filled(
-                          onPressed: () {
-                            sortProductsDialogBuilder(context);
-                          },
-                          icon: const Icon(Icons.sort)
+                      PopupMenuButton<String>(
+                        icon: const Icon(
+                          Icons.sort
+                        ),
+                        onSelected: (value) {
+                          handleSortSelection(value);
+                        },
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                          PopupMenuItem<String>(
+                            value: SortType.titleAsc.name,
+                            child: const Text('Название (по возрастанию)'),
+                          ),
+                          PopupMenuItem<String>(
+                            value: SortType.titleDesc.name,
+                            child: const Text('Название (по убыванию)'),
+                          ),
+                          PopupMenuItem<String>(
+                            value: SortType.priceAsc.name,
+                            child: const Text('Цена (по возрастанию)'),
+                          ),
+                          PopupMenuItem<String>(
+                            value: SortType.priceDesc.name,
+                            child: const Text('Цена (по убыванию)'),
+                          ),
+                        ],
                       ),
                       Expanded(
                         child: MyTextFieldWidget(
@@ -68,7 +88,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         hintText: "Поиск...",
                       ),
                     ),
-                    IconButton.filled(
+                    IconButton(
                         onPressed: openFilterDialog,
                         icon: const Icon(Icons.filter_alt)
                     ),
@@ -176,5 +196,26 @@ class _ProductsScreenState extends State<ProductsScreen> {
           product.subtitle.toLowerCase().contains(query.toLowerCase());
       return priceMatches && searchMatches;
     }).toList();
+  }
+
+  void handleSortSelection(String sortTypeString) {
+    setState(() {
+      final sortType = SortType.values.firstWhere((element) => element.name == sortTypeString);
+
+      switch(sortType) {
+        case SortType.priceAsc:
+          products.sort((a, b) => a.price.compareTo(b.price));
+          break;
+        case SortType.priceDesc:
+          products.sort((a, b) => b.price.compareTo(a.price));
+          break;
+        case SortType.titleAsc:
+          products.sort((a, b) => a.title.compareTo(b.title));
+          break;
+        case SortType.titleDesc:
+          products.sort((a, b) => b.title.compareTo(a.title));
+          break;
+      }
+    });
   }
 }

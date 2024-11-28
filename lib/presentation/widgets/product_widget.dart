@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/favorite_service.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
 
 class ProductWidget extends StatelessWidget {
   final ProductModel product;

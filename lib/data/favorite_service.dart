@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter_task3/data/UserService.dart';
+import 'package:flutter_task3/data/user_service.dart';
 import 'package:flutter_task3/data/products_service.dart';
-import 'package:flutter_task3/presentation/models/ProductModel.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
 
 import 'dio_config.dart';
 

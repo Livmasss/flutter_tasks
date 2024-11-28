@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/data/UserService.dart';
-import 'package:flutter_task3/presentation/screens/MainRouter.dart';
-import 'package:flutter_task3/presentation/screens/auth/SignupScreen.dart';
+import 'package:flutter_task3/presentation/screens/auth/signup_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {

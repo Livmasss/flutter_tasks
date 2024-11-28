@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task3/presentation/models/ProfileModel.dart';
+import 'package:flutter_task3/presentation/models/profile_model.dart';
 
-import '../../widgets/MyNumericFieldWidget.dart';
-import '../../widgets/MyTextFieldWidget.dart';
+import '../../widgets/numeric_field_widget.dart';
+import '../../widgets/text_field_widget.dart';
 
 class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({
