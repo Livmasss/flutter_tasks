@@ -38,15 +38,36 @@ class _ProductsScreenState extends State<ProductsScreen> {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                MyTextFieldWidget(
-                  initialValue: searchQuery,
-                  onChanged: (value) {
-                    setState(() {
-                      searchQuery = value;
-                    });
-                  },
-                  hintText: "Поиск...",
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    children: [
+                      IconButton.filled(
+                          onPressed: () {
+
+                          },
+                          icon: const Icon(Icons.sort)
+                      ),
+                      Expanded(
+                        child: MyTextFieldWidget(
+                        initialValue: searchQuery,
+                        onChanged: (value) {
+                          setState(() {
+                            searchQuery = value;
+                          });
+                        },
+                        hintText: "Поиск...",
+                      ),
+                    ),
+                    IconButton.filled(
+                        onPressed: () {
+
+                        },
+                        icon: const Icon(Icons.filter_alt)
+                    ),
+                  ],
                 ),
+              ),
                 Expanded(
                     child: GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
