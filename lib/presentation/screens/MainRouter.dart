@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_task3/presentation/screens/FavoriteScreen.dart';
-import 'package:flutter_task3/presentation/screens/MainScreen.dart';
+import 'package:flutter_task3/presentation/screens/products/ProductsScreen.dart';
 import 'package:flutter_task3/presentation/screens/cart/ShoppingCartScreen.dart';
 import 'package:flutter_task3/presentation/screens/profile/ProfileScreen.dart';
 
@@ -23,7 +21,7 @@ class _MainRouterState extends State<MainRouter> {
   }
 
   static const List<Widget> _widgetOptions = <Widget>[
-    MainScreen(),
+    ProductsScreen(),
     FavoriteScreen(),
     ShoppingCartScreen(),
     ProfileScreen(),
