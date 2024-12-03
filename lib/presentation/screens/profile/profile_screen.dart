@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/presentation/screens/orders/orders_screen.dart';
 import 'package:flutter_task3/presentation/screens/profile/edit_profile_screen.dart';
 
 import '../../../data/profile_service.dart';
@@ -41,6 +42,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: const TextStyle(
                 fontSize: 20
             ),
+          ),
+          OutlinedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const OrdersScreen(),
+            ));
+          },
+              child: const Text("Мои заказы")
           ),
           Text(
             "ПКС ${profile.taskNumber} задание",
