@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/orders_service.dart';
+
+import '../../models/order_model.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({super.key});
@@ -8,8 +11,25 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
+  List<OrderModel> orders = [];
+
+  @override
+  void initState() {
+    getOrders().then((value) => setState(() {
+      orders = value;
+    }));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+        child: Scaffold(
+          body: ListView.builder(
+            itemCount: orders.length,
+              itemBuilder: (BuildContext context, int index) => Text(orders[index].total.toString())
+            )
+        )
+    );
   }
 }
