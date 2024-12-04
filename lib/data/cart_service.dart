@@ -39,6 +39,14 @@ void deleteCartItem(ShopCartItemModel model) async {
   );
 }
 
+Future<void> clearCart() async {
+  var userId = getUserId();
+
+  await getHttpClient().delete(
+      "/cart/$userId/"
+  );
+}
+
 void decreaseCartItemCount(int productId) async {
   var userId = getUserId();
 

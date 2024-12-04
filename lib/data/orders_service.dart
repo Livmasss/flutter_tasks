@@ -17,7 +17,7 @@ Future<List<OrderModel>> getOrders() async {
   return orders;
 }
 
-void createOrder(OrderModel order) async {
+Future<void> createOrder(OrderModel order) async {
   var userId = getUserId();
   var result = await getHttpClient().post(
       "/orders/$userId",
