@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/orders_service.dart';
+import 'package:flutter_task3/presentation/models/order_model.dart';
 
 class ShoppingCartBottomBar extends StatelessWidget {
   double totalPrice;
@@ -25,7 +27,11 @@ class ShoppingCartBottomBar extends StatelessWidget {
             width: double.infinity,
             child: OutlinedButton(
               child: const Text("Купить", style: TextStyle(fontSize: 20)),
-              onPressed: () {},
+              onPressed: () {
+                createOrder(
+                  OrderModel(0, "", totalPrice, "Pending", "")
+                );
+              },
             )
         )
       ],
