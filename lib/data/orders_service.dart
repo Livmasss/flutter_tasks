@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_task3/data/user_service.dart';
+import 'package:flutter_task3/presentation/models/product_model.dart';
 
 import '../presentation/models/order_model.dart';
 import 'dio_config.dart';
@@ -23,6 +24,12 @@ Future<void> createOrder(OrderModel order) async {
       "/orders/$userId",
       data: serializeOrder(order, userId!)
   );
+}
+
+Future<List<ProductModel>> getOrderItems(OrderModel order) async {
+  return [
+    ProductModel(1, "title", "subtitle", "imageUri", 123.1203, true)
+  ];
 }
 
 OrderModel deserializeOrder(dynamic json) {
