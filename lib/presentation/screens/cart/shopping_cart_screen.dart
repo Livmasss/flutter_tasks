@@ -101,6 +101,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   items = [];
                 });
               },
+              shopItemsList: items,
             ),
           ),
         ],

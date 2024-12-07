@@ -86,7 +86,7 @@ ShopCartItemModel deserializeCartItem(dynamic productJson) {
   );
 }
 
-dynamic serializeProduct(ShopCartItemModel product) {
+dynamic serializeCartItem(ShopCartItemModel product) {
   return {
     'product_id': null,
     'name': product.title,

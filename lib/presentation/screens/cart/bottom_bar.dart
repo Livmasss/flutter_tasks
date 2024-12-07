@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_task3/data/orders_service.dart';
 import 'package:flutter_task3/presentation/models/order_model.dart';
+import 'package:flutter_task3/presentation/models/shop_cart_item_model.dart';
 
 import '../../../data/cart_service.dart';
 
 class ShoppingCartBottomBar extends StatelessWidget {
   double totalPrice;
   int totalCount;
+  List<ShopCartItemModel> shopItemsList;
   VoidCallback onCartClear;
 
   ShoppingCartBottomBar({
@@ -15,6 +17,7 @@ class ShoppingCartBottomBar extends StatelessWidget {
     required this.totalPrice,
     required this.totalCount,
     required this.onCartClear,
+    required this.shopItemsList,
   });
 
   @override
@@ -34,7 +37,8 @@ class ShoppingCartBottomBar extends StatelessWidget {
               child: const Text("Купить", style: TextStyle(fontSize: 20)),
               onPressed: () {
                 createOrder(
-                  OrderModel(0, "", totalPrice, "Pending", "")
+                    OrderModel(0, "", totalPrice, "Pending", ""),
+                    shopItemsList
                 ).then((value) => {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Заказ зарегестрирован!')),
