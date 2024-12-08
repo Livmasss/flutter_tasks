@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/presentation/screens/chat/support_chat_screen.dart';
 import 'package:flutter_task3/presentation/screens/orders/orders_screen.dart';
 import 'package:flutter_task3/presentation/screens/profile/edit_profile_screen.dart';
 
@@ -49,6 +50,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ));
           },
               child: const Text("Мои заказы")
+          ),
+          OutlinedButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const SupportChatScreen(),
+            ));
+          },
+              child: const Text("Поддержка")
           ),
           Text(
             "ПКС ${profile.taskNumber} задание",

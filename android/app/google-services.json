@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303717198814",
+    "project_id": "pks-flutter",
+    "storage_bucket": "pks-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303717198814:android:0e8ffddc8c0cfc54d74b4f",
+        "android_client_info": {
+          "package_name": "com.livmas.flutter_task3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0x-C1JjyRinxHLEqEz7Ra6fyx3zZjcoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
