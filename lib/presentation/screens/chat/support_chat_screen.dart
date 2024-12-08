@@ -13,9 +13,11 @@ class SupportChatScreen extends StatefulWidget {
 
 class _SupportChatScreenState extends State<SupportChatScreen> {
   List<ChatMessageModel> messages = [];
+  final SupportChatService service = SupportChatService();
   
   @override
   void initState() {
+    service.sendMessage(ChatMessageModel(text: "Test send"));
     getSupportMessages().then((value) => setState(() {
       messages = value;
     }));
@@ -28,12 +30,12 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
       appBar: AppBar(
         title: const Text('Чат'),
       ),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
-            child: ChatMessages(messages: messages),
+            child: ChatMessages(),
           ),
-          const NewChatMessage(),
+          // TextField(controller: ,)
         ],
       ),
     );

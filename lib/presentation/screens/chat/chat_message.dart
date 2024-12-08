@@ -1,32 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/chat_message_model.dart';
 
 class ChatMessages extends StatelessWidget {
-  final List<ChatMessageModel> messages;
-
   const ChatMessages({
-    super.key,
-    required this.messages
+    super.key
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemBuilder: (context, index) => Text(messages[index].text)
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance
+          .collection('messages')
+          .orderBy('createdAt', descending: true)
+          .snapshots(),
+      builder: (ctx, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
+        if (chatSnapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        if (chatSnapshot.data == null) {
+          return const CircularProgressIndicator();
+        }
+
+        final docs = chatSnapshot.data!.docs;
+        return ListView.builder(
+            reverse: true,
+            itemCount: docs.length,
+            itemBuilder: (context, index) => Text(docs[index]['text'])
+        );
+      },
     );
   }
 }
 
 class NewChatMessage extends StatelessWidget {
-
   const NewChatMessage({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Text("message.text");
+    return TextField(
+
+    );
   }
 }
 
