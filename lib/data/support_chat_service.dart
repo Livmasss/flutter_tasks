@@ -16,8 +16,13 @@ class SupportChatService extends ChangeNotifier {
     if (getUserId() != getAdminId())
       receiver = getAdminId();
 
+    var userId = getUserId();
+    if (isAdmin()) {
+      userId = receiver;
+    }
+
     _firestore.collection("chats")
-        .doc(getUserId())
+        .doc(userId)
         .collection("messages")
         .add({
           'text': message.text,
@@ -35,8 +40,7 @@ class SupportChatService extends ChangeNotifier {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getAllChats() {
-    final snapshot = _firestore.collection("chats")
-        .snapshots();
+    final snapshot = _firestore.collection("chats").snapshots();
     return snapshot;
   }
 }

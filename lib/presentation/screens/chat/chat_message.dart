@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_task3/data/support_chat_service.dart';
 import 'package:flutter_task3/presentation/models/chat_message_model.dart';
@@ -8,17 +11,24 @@ import '../../../data/user_service.dart';
 
 class ChatMessages extends StatelessWidget {
   final String? companionId;
-  const ChatMessages({
+  String? userId;
+
+  ChatMessages({
     super.key,
     required this.companionId
-  });
+  }) {
+    userId = getUserId();
+    if (isAdmin()) {
+      userId = companionId;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection("chats")
-          .doc(getUserId())
+          .doc(userId)
           .collection("messages")
           .orderBy('createdAt', descending: true)
           .snapshots(),
@@ -45,6 +55,7 @@ class ChatMessages extends StatelessWidget {
 class ChatMessage extends StatelessWidget {
   final ChatMessageModel message;
   Alignment? alignment;
+  CrossAxisAlignment axisAlignment = CrossAxisAlignment.start;
 
   ChatMessage({
     super.key,
@@ -52,18 +63,36 @@ class ChatMessage extends StatelessWidget {
   }) {
     if (message.receiver == getUserId()) {
       alignment = Alignment.topRight;
+      axisAlignment = CrossAxisAlignment.end;
     }
     else {
       alignment = Alignment.topLeft;
+      axisAlignment = CrossAxisAlignment.start;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       alignment: alignment,
-      child: Text(message.text),
+      child: SizedBox(
+        width: 300,
+        child: Column(
+          crossAxisAlignment: axisAlignment,
+          children: [
+            Text(
+                message.text,
+                style: const TextStyle(
+                  fontSize: 22
+                ),
+            ),
+            Text(
+                "${message.sentDate?.hour} : ${message.sentDate?.minute}",
+                textAlign: TextAlign.end
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
