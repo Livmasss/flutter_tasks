@@ -18,29 +18,28 @@ class SupportChatScreen extends StatefulWidget {
 class _SupportChatScreenState extends State<SupportChatScreen> {
   List<ChatMessageModel> messages = [];
   final SupportChatService service = SupportChatService();
-  
-  @override
-  void initState() {
-    service.sendMessage(ChatMessageModel(text: "Test send"));
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Чат'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ChatMessages(
-                companionId: widget.companionId
+    return SafeArea(
+        child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Чат'),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ChatMessages(
+                  companionId: widget.companionId
+              ),
             ),
-          ),
-          // TextField(controller: ,)
-        ],
-      ),
+            NewChatMessage(
+              chatService: service,
+              companionId: widget.companionId,
+            )
+          ],
+        ),
+      )
     );
   }
 }

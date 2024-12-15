@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/support_chat_service.dart';
 import 'package:flutter_task3/presentation/models/chat_message_model.dart';
 
 import '../../../data/user_service.dart';
@@ -69,14 +70,43 @@ class ChatMessage extends StatelessWidget {
 
 
 class NewChatMessage extends StatelessWidget {
-  const NewChatMessage({
+  final SupportChatService chatService;
+  final String? companionId;
+  NewChatMessage({
     super.key,
+    required this.chatService,
+    this.companionId
   });
+
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return Row(
+      children: [
+        Expanded(
+            child: TextField(
+              controller: controller,
+              onChanged: (value) {
+                // controller.text = value;
+              },
+            )
+        ),
+        IconButton(
+            onPressed: () {
+              String receiverId = companionId ?? getAdminId();
 
+              ChatMessageModel message = ChatMessageModel(
+                  text: controller.text,
+                  receiver: receiverId
+              );
+
+              chatService.sendMessage(message);
+              controller.text = "";
+            },
+            icon: const Icon(Icons.send)
+        )
+      ],
     );
   }
 }
