@@ -25,12 +25,18 @@ class SupportChatService extends ChangeNotifier {
           'userId': getUserId(),
           'receiver': receiver
         });
-  }
-}
 
-Future<List<ChatMessageModel>> getSupportMessages() async {
-  return [
-    ChatMessageModel(text: "text"),
-    ChatMessageModel(text: "text 2"),
-  ];
+    Future<List<ChatMessageModel>> getSupportMessages() async {
+      return [
+        ChatMessageModel(text: "text"),
+        ChatMessageModel(text: "text 2"),
+      ];
+    }
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllChats() {
+    final snapshot = _firestore.collection("chats")
+        .snapshots();
+    return snapshot;
+  }
 }
