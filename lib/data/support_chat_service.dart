@@ -23,7 +23,7 @@ class SupportChatService extends ChangeNotifier {
           'text': message.text,
           'createdAt': Timestamp.now(),
           'userId': getUserId(),
-          'reciever': receiver
+          'receiver': receiver
         });
   }
 }
