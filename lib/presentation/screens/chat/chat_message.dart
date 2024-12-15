@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../data/user_service.dart';
+
 
 class ChatMessages extends StatelessWidget {
   const ChatMessages({
@@ -11,7 +13,9 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
-          .collection('messages')
+          .collection("chats")
+          .doc(getUserId())
+          .collection("messages")
           .orderBy('createdAt', descending: true)
           .snapshots(),
       builder: (ctx, AsyncSnapshot<QuerySnapshot> chatSnapshot) {

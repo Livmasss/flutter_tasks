@@ -7,11 +7,24 @@ class SupportChatService extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> sendMessage(ChatMessageModel message) async {
-    _firestore.collection('messages').add({
-      'text': message.text,
-      'createdAt': Timestamp.now(),
-      'userId': getUserId(),
-    });
+    String receiver;
+    if (message.receiver == null)
+      receiver = getAdminId();
+    else
+      receiver = message.receiver!;
+
+    if (getUserId() != getAdminId())
+      receiver = getAdminId();
+
+    _firestore.collection("chats")
+        .doc(getUserId())
+        .collection("messages")
+        .add({
+          'text': message.text,
+          'createdAt': Timestamp.now(),
+          'userId': getUserId(),
+          'reciever': receiver
+        });
   }
 }
 

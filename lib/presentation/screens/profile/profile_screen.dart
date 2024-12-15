@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task3/data/user_service.dart';
 import 'package:flutter_task3/presentation/screens/chat/support_chat_screen.dart';
 import 'package:flutter_task3/presentation/screens/orders/orders_screen.dart';
 import 'package:flutter_task3/presentation/screens/profile/edit_profile_screen.dart';
 
 import '../../../data/profile_service.dart';
 import '../../models/profile_model.dart';
+import '../chat/admin_chats_list_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -52,9 +54,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: const Text("Мои заказы")
           ),
           OutlinedButton(onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => const SupportChatScreen(),
-            ));
+            if (isAdmin()) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const AdminChatsListScreen(),
+              ));
+            }
+            else {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const SupportChatScreen(),
+              ));
+            }
           },
               child: const Text("Поддержка")
           ),

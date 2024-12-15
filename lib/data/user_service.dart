@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_task3/data/dio_config.dart';
 import 'package:flutter_task3/presentation/models/profile_model.dart';
@@ -9,6 +11,13 @@ final SupabaseClient supabase = Supabase.instance.client;
 
 String? getUserId() {
   return userId;
+}
+String getAdminId() {
+  return "53c84689-5a14-42b3-8f93-1b40dfc633ce";
+}
+
+bool isAdmin() {
+  return getUserId() == getAdminId();
 }
 
 void signup(String password, ProfileModel profile, VoidCallback callback) async {
