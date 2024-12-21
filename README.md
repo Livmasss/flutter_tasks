@@ -25,6 +25,6 @@ ___
 | 11 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_11) |
 | 12 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_12) |
 | 13 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_13) |
-| 14 | |
-| 15 | |
-| 16 | |
+| 14 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_14) |
+| 15 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_14) |
+| 16 | [Ссылка на ветку](https://github.com/Livmasss/flutter_tasks/tree/Practice_16) |
